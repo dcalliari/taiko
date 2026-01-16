@@ -43,7 +43,8 @@ const Header = () => {
 			<div className="container mx-auto px-4">
 				<div className="flex items-center justify-between h-20">
 					{/* Logo */}
-					<a href="/" className="flex items-center gap-2">
+					{/** biome-ignore lint/a11y/useValidAnchor: This is the intended behavior, to go back to the top of the page */}
+					<a href="#" className="flex items-center gap-2">
 						<span className="font-heading font-black text-xl md:text-2xl tracking-wider text-primary-foreground">
 							KODON <span className="text-primary">AMAZON</span> TAIKO
 						</span>

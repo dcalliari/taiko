@@ -1,11 +1,15 @@
+/** biome-ignore-all lint/suspicious/noUnknownAtRules: it only works like that */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap");
-@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
 	:root {
 		/* Kodon Amazon Taiko Design System */
-		--background: 0 0% 100%;
-		--foreground: 0 0% 13%;
+		--background: 0 0% 7%;
+		--foreground: 0 0% 95%;
 
 		--card: 0 0% 100%;
 		--card-foreground: 0 0% 13%;
