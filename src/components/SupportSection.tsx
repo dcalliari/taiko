@@ -1,8 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { Award, Heart, Music, Users } from "lucide-react";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const SupportSection = () => {
+	const { t } = useTranslation();
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -26,33 +28,41 @@ const SupportSection = () => {
 						transition={{ duration: 0.8 }}
 					>
 						<span className="inline-block text-primary font-heading font-semibold uppercase tracking-widest text-sm mb-4">
-							Faça Parte
+							{t("support.label")}
 						</span>
 						<h2 className="heading-section text-primary-foreground mb-6">
-							APOIE O KODON
+							{t("support.title")}
 						</h2>
 
 						<div className="w-20 h-1 bg-primary mb-8" />
 
 						<p className="text-lg text-muted-foreground leading-relaxed mb-6">
-							O Kodon Amazon Taiko é uma associação cultural sem fins
-							lucrativos, dedicada à preservação e difusão da arte do taiko no
-							coração da Amazônia.
+							{t("support.description1")}
 						</p>
 
 						<p className="text-lg text-muted-foreground leading-relaxed mb-8">
-							Suas doações nos ajudam a manter nossos instrumentos, figurinos
-							tradicionais, e a levar a energia do taiko para comunidades que
-							não teriam acesso a essa experiência transformadora.
+							{t("support.description2")}
 						</p>
 
 						{/* Impact Numbers */}
 						<div className="grid grid-cols-2 gap-6 mb-8">
 							{[
-								{ icon: Music, value: "50+", label: "Apresentações/ano" },
-								{ icon: Users, value: "2000+", label: "Pessoas impactadas" },
-								{ icon: Award, value: "10", label: "Anos de história" },
-								{ icon: Heart, value: "100%", label: "Paixão" },
+								{
+									icon: Music,
+									value: "50+",
+									label: t("support.stats.presentations"),
+								},
+								{
+									icon: Users,
+									value: "2000+",
+									label: t("support.stats.people"),
+								},
+								{ icon: Award, value: "10", label: t("support.stats.years") },
+								{
+									icon: Heart,
+									value: "100%",
+									label: t("support.stats.passion"),
+								},
 							].map((stat, index) => (
 								<motion.div
 									key={stat.label}
@@ -84,7 +94,7 @@ const SupportSection = () => {
 							className="inline-block px-10 py-4 bg-primary text-primary-foreground font-heading font-bold uppercase tracking-wider text-sm hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
 						>
 							<Heart className="w-5 h-5 inline-block mr-2 -mt-1" />
-							DOE AGORA
+							{t("support.donateNow")}
 						</motion.a>
 					</motion.div>
 
@@ -96,7 +106,7 @@ const SupportSection = () => {
 						className="bg-background rounded-lg p-8 shadow-xl"
 					>
 						<h3 className="font-heading font-bold text-foreground text-xl mb-6 text-center">
-							Nossos Apoiadores
+							{t("support.partnersTitle")}
 						</h3>
 
 						<div className="grid grid-cols-2 gap-8">
@@ -106,20 +116,20 @@ const SupportSection = () => {
 									key={`partner-${num}`}
 									className="aspect-[3/2] bg-muted rounded-lg flex items-center justify-center text-muted-foreground font-heading text-sm"
 								>
-									Logo Parceiro {num}
+									{t("support.partnerPlaceholder")} {num}
 								</div>
 							))}
 						</div>
 
 						<div className="mt-8 pt-6 border-t border-border text-center">
 							<p className="text-sm text-muted-foreground mb-4">
-								Projeto incentivado pela Lei de Incentivo à Cultura
+								{t("support.incentiveLaw")}
 							</p>
 							<a
 								href="#parceiros"
 								className="inline-flex items-center gap-2 text-primary font-heading font-semibold uppercase tracking-wider text-sm hover:gap-4 transition-all"
 							>
-								Seja um parceiro
+								{t("support.becomePartner")}
 								<span>→</span>
 							</a>
 						</div>

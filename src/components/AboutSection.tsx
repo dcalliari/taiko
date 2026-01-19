@@ -1,7 +1,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Trans, useTranslation } from "react-i18next";
 
 const AboutSection = () => {
+	const { t } = useTranslation();
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -16,24 +18,23 @@ const AboutSection = () => {
 					className="max-w-4xl mx-auto text-center"
 				>
 					<span className="inline-block text-primary font-heading font-semibold uppercase tracking-widest text-sm mb-4">
-						Nossa Essência
+						{t("about.label")}
 					</span>
-					<h2 className="heading-section text-foreground mb-8">QUEM SOMOS</h2>
+					<h2 className="heading-section text-foreground mb-8">
+						{t("about.title")}
+					</h2>
 
 					<div className="w-20 h-1 bg-primary mx-auto mb-8" />
 
 					<p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
-						Somos o{" "}
-						<strong className="text-foreground">Kodon Amazon Taiko</strong>, um
-						coletivo vibrante de músicos que une a tradição milenar do
-						kumi-daiko japonês com a exuberância e energia da Amazônia
-						brasileira.
+						<Trans
+							i18nKey="about.description1"
+							components={{ strong: <strong className="text-foreground" /> }}
+						/>
 					</p>
 
 					<p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-						Nossa missão é espalhar alegria, força e emoção através de cada
-						batida do tambor. Acreditamos que a música é uma linguagem universal
-						que conecta corações, transcende fronteiras e transforma vidas.
+						{t("about.description2")}
 					</p>
 
 					<motion.a
@@ -43,7 +44,7 @@ const AboutSection = () => {
 						transition={{ delay: 0.5, duration: 0.5 }}
 						className="inline-flex items-center gap-2 text-primary font-heading font-semibold uppercase tracking-wider text-sm hover:gap-4 transition-all"
 					>
-						Conheça nossa história
+						{t("about.historyLink")}
 						<span className="text-xl">→</span>
 					</motion.a>
 				</motion.div>

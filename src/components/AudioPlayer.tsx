@@ -1,8 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const AudioPlayer = () => {
+	const { t } = useTranslation();
 	const sectionRef = useRef(null);
 	const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
@@ -44,10 +46,10 @@ const AudioPlayer = () => {
 					className="max-w-2xl mx-auto text-center"
 				>
 					<span className="inline-block text-primary font-heading font-semibold uppercase tracking-widest text-sm mb-4">
-						Ouça Nossa Música
+						{t("audio.label")}
 					</span>
 					<h2 className="heading-section text-foreground mb-8">
-						AMOSTRA DO NOSSO SOM
+						{t("audio.title")}
 					</h2>
 
 					<div className="w-20 h-1 bg-primary mx-auto mb-12" />
@@ -65,7 +67,7 @@ const AudioPlayer = () => {
 								type="button"
 								onClick={togglePlay}
 								className="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/30"
-								aria-label={isPlaying ? "Pausar" : "Reproduzir"}
+								aria-label={isPlaying ? t("audio.pause") : t("audio.play")}
 							>
 								{isPlaying ? (
 									<Pause className="w-6 h-6" />
@@ -77,10 +79,10 @@ const AudioPlayer = () => {
 							{/* Track Info & Progress */}
 							<div className="flex-1 text-left">
 								<h4 className="font-heading font-bold text-primary-foreground mb-1">
-									Ritmo da Floresta
+									{t("audio.trackTitle")}
 								</h4>
 								<p className="text-sm text-muted-foreground mb-3">
-									Kodon Amazon Taiko • 2024
+									{t("audio.trackArtist")}
 								</p>
 
 								{/* Progress Bar */}
@@ -109,7 +111,7 @@ const AudioPlayer = () => {
 								type="button"
 								onClick={() => setIsMuted(!isMuted)}
 								className="flex-shrink-0 p-3 text-muted-foreground hover:text-primary transition-colors"
-								aria-label={isMuted ? "Ativar som" : "Silenciar"}
+								aria-label={isMuted ? t("audio.unmute") : t("audio.mute")}
 							>
 								{isMuted ? (
 									<VolumeX className="w-6 h-6" />
@@ -120,10 +122,7 @@ const AudioPlayer = () => {
 						</div>
 					</motion.div>
 
-					<p className="text-muted-foreground mt-8">
-						Uma fusão única de percussão tradicional japonesa com ritmos
-						amazônicos.
-					</p>
+					<p className="text-muted-foreground mt-8">{t("audio.description")}</p>
 				</motion.div>
 			</div>
 		</section>

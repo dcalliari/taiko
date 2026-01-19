@@ -1,68 +1,70 @@
 import { motion, useInView } from "framer-motion";
 import { Play } from "lucide-react";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import heroDrums from "@/assets/hero-drums.jpg";
 import heroPerformance from "@/assets/hero-performance.jpg";
 import heroTaiko from "@/assets/hero-taiko.jpg";
 
-const filters = [
-	{ id: "all", label: "Todos" },
-	{ id: "concerts", label: "Concertos" },
-	{ id: "festivals", label: "Festivais" },
-	{ id: "collaborations", label: "Colaborações" },
-	{ id: "workshops", label: "Workshops" },
-	{ id: "videos", label: "Vídeos" },
-];
-
-const galleryItems = [
-	{
-		id: 1,
-		image: heroTaiko,
-		title: "Performance no Theatro da Paz",
-		category: "concerts",
-		isVideo: false,
-	},
-	{
-		id: 2,
-		image: heroDrums,
-		title: "Tambores da Floresta",
-		category: "festivals",
-		isVideo: false,
-	},
-	{
-		id: 3,
-		image: heroPerformance,
-		title: "Workshop de Verão 2024",
-		category: "workshops",
-		isVideo: false,
-	},
-	{
-		id: 4,
-		image: heroTaiko,
-		title: "Festival do Folclore",
-		category: "festivals",
-		isVideo: true,
-	},
-	{
-		id: 5,
-		image: heroDrums,
-		title: "Colaboração com SESC",
-		category: "collaborations",
-		isVideo: false,
-	},
-	{
-		id: 6,
-		image: heroPerformance,
-		title: "Apresentação Corporativa",
-		category: "concerts",
-		isVideo: false,
-	},
-];
-
 const GallerySection = () => {
+	const { t } = useTranslation();
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 	const [activeFilter, setActiveFilter] = useState("all");
+
+	const filters = [
+		{ id: "all", label: t("gallery.filters.all") },
+		{ id: "concerts", label: t("gallery.filters.concerts") },
+		{ id: "festivals", label: t("gallery.filters.festivals") },
+		{ id: "collaborations", label: t("gallery.filters.collaborations") },
+		{ id: "workshops", label: t("gallery.filters.workshops") },
+		{ id: "videos", label: t("gallery.filters.videos") },
+	];
+
+	const galleryItems = [
+		{
+			id: 1,
+			image: heroTaiko,
+			title: t("gallery.items.item1"),
+			category: "concerts",
+			isVideo: false,
+		},
+		{
+			id: 2,
+			image: heroDrums,
+			title: t("gallery.items.item2"),
+			category: "festivals",
+			isVideo: false,
+		},
+		{
+			id: 3,
+			image: heroPerformance,
+			title: t("gallery.items.item3"),
+			category: "workshops",
+			isVideo: false,
+		},
+		{
+			id: 4,
+			image: heroTaiko,
+			title: t("gallery.items.item4"),
+			category: "festivals",
+			isVideo: true,
+		},
+		{
+			id: 5,
+			image: heroDrums,
+			title: t("gallery.items.item5"),
+			category: "collaborations",
+			isVideo: false,
+		},
+		{
+			id: 6,
+			image: heroPerformance,
+			title: t("gallery.items.item6"),
+			category: "concerts",
+			isVideo: false,
+		},
+	];
 
 	const filteredItems =
 		activeFilter === "all"
@@ -80,10 +82,10 @@ const GallerySection = () => {
 					className="text-center mb-12"
 				>
 					<span className="inline-block text-primary font-heading font-semibold uppercase tracking-widest text-sm mb-4">
-						Nosso Trabalho
+						{t("gallery.label")}
 					</span>
 					<h2 className="heading-section text-foreground mb-8">
-						GALERIA MULTIMÍDIA
+						{t("gallery.title")}
 					</h2>
 					<div className="w-20 h-1 bg-primary mx-auto" />
 				</motion.div>
@@ -163,7 +165,7 @@ const GallerySection = () => {
 						href="#portfolio"
 						className="inline-block px-8 py-4 bg-primary text-primary-foreground font-heading font-bold uppercase tracking-wider text-sm hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
 					>
-						VER PORTFÓLIO COMPLETO
+						{t("gallery.viewPortfolio")}
 					</a>
 				</motion.div>
 			</div>

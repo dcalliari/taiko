@@ -1,0 +1,157 @@
+{
+	"header": {
+		"about": "Sobre o Kodon",
+		"whoWeAre": "Quem Somos",
+		"ourMusic": "Nossa Música",
+		"history": "História",
+		"shop": "Loja",
+		"cdsMusic": "CDs e Músicas",
+		"schedule": "Agenda e Notícias",
+		"photosVideos": "Fotos e Vídeos",
+		"support": "Apoie-nos",
+		"contact": "Contato"
+	},
+	"hero": {
+		"slide1": {
+			"title": "KODON AMAZON TAIKO",
+			"subtitle": "A Força do Tambor na Amazônia",
+			"cta": "SAIBA MAIS"
+		},
+		"slide2": {
+			"title": "CRIAMOS, CATIVAMOS E INOVAMOS",
+			"subtitle": "Através da Música",
+			"cta": "NOSSAS APRESENTAÇÕES"
+		},
+		"slide3": {
+			"title": "TRADIÇÃO E ENERGIA",
+			"subtitle": "O Ritmo que Move Corações",
+			"cta": "NOSSA HISTÓRIA"
+		}
+	},
+	"about": {
+		"label": "Nossa Essência",
+		"title": "QUEM SOMOS",
+		"description1": "Somos o <strong>Kodon Amazon Taiko</strong>, um coletivo vibrante de músicos que une a tradição milenar do kumi-daiko japonês com a exuberância e energia da Amazônia brasileira.",
+		"description2": "Nossa missão é espalhar alegria, força e emoção através de cada batida do tambor. Acreditamos que a música é uma linguagem universal que conecta corações, transcende fronteiras e transforma vidas.",
+		"historyLink": "Conheça nossa história"
+	},
+	"pillars": {
+		"create": {
+			"title": "NÓS CRIAMOS",
+			"description": "Composições originais que fundem ritmos tradicionais japoneses com a pulsação amazônica. Criamos experiências temáticas únicas para cada apresentação.",
+			"link": "- veja nossos projetos -"
+		},
+		"teach": {
+			"title": "NÓS ENSINAMOS",
+			"description": "Workshops e oficinas que transmitem não apenas a técnica do taiko, mas também sua filosofia: disciplina, respeito e conexão com o ritmo interior.",
+			"link": "- veja nossa agenda -"
+		},
+		"play": {
+			"title": "NÓS TOCAMOS",
+			"description": "Apresentações em festivais culturais, eventos corporativos, casamentos e celebrações. Cada performance é uma experiência transformadora.",
+			"link": "- veja nosso portfólio -"
+		}
+	},
+	"audio": {
+		"label": "Ouça Nossa Música",
+		"title": "AMOSTRA DO NOSSO SOM",
+		"trackTitle": "Ritmo da Floresta",
+		"trackArtist": "Kodon Amazon Taiko • 2024",
+		"description": "Uma fusão única de percussão tradicional japonesa com ritmos amazônicos.",
+		"play": "Reproduzir",
+		"pause": "Pausar",
+		"mute": "Silenciar",
+		"unmute": "Ativar som"
+	},
+	"news": {
+		"contactUs": "FALE CONOSCO",
+		"label": "Fique por Dentro",
+		"title": "ÚLTIMAS NOTÍCIAS",
+		"allPosts": "Todas as postagens",
+		"eventsLabel": "Agenda",
+		"eventsTitle": "PRÓXIMOS EVENTOS",
+		"noEvents": "Nenhum evento programado no momento.",
+		"calendarComplete": "Calendário completo",
+		"newsletterTitle": "Newsletter",
+		"newsletterDescription": "Receba novidades, datas de apresentações e conteúdo exclusivo diretamente no seu e-mail.",
+		"emailPlaceholder": "Seu e-mail",
+		"subscribe": "INSCREVER-SE",
+		"subscribeSuccess": "Obrigado por se inscrever!",
+		"news1": {
+			"title": "Oficina de Taiko - Verão 2025",
+			"date": "15 de Janeiro, 2025",
+			"excerpt": "Inscrições abertas para nossa oficina de verão. Venha aprender os fundamentos do taiko!"
+		},
+		"news2": {
+			"title": "Novas Fotos do Concerto no Theatro da Paz",
+			"date": "10 de Janeiro, 2025",
+			"excerpt": "Confira as imagens da nossa apresentação histórica no Theatro da Paz."
+		},
+		"news3": {
+			"title": "Kodon no Festival do Folclore 2024",
+			"date": "28 de Dezembro, 2024",
+			"excerpt": "Encerramos o ano com uma apresentação inesquecível no Festival do Folclore."
+		},
+		"event1": {
+			"title": "Workshop de Iniciação ao Taiko",
+			"date": "25 Jan 2025",
+			"location": "Centro Cultural Japonês"
+		},
+		"event2": {
+			"title": "Apresentação no Parque dos Bilhares",
+			"date": "02 Fev 2025",
+			"location": "Belém, PA"
+		}
+	},
+	"gallery": {
+		"label": "Nosso Trabalho",
+		"title": "GALERIA MULTIMÍDIA",
+		"filters": {
+			"all": "Todos",
+			"concerts": "Concertos",
+			"festivals": "Festivais",
+			"collaborations": "Colaborações",
+			"workshops": "Workshops",
+			"videos": "Vídeos"
+		},
+		"items": {
+			"item1": "Performance no Theatro da Paz",
+			"item2": "Tambores da Floresta",
+			"item3": "Workshop de Verão 2024",
+			"item4": "Festival do Folclore",
+			"item5": "Colaboração com SESC",
+			"item6": "Apresentação Corporativa"
+		},
+		"viewPortfolio": "VER PORTFÓLIO COMPLETO"
+	},
+	"support": {
+		"label": "Faça Parte",
+		"title": "APOIE O KODON",
+		"description1": "O Kodon Amazon Taiko é uma associação cultural sem fins lucrativos, dedicada à preservação e difusão da arte do taiko no coração da Amazônia.",
+		"description2": "Suas doações nos ajudam a manter nossos instrumentos, figurinos tradicionais, e a levar a energia do taiko para comunidades que não teriam acesso a essa experiência transformadora.",
+		"stats": {
+			"presentations": "Apresentações/ano",
+			"people": "Pessoas impactadas",
+			"years": "Anos de história",
+			"passion": "Paixão"
+		},
+		"donateNow": "DOE AGORA",
+		"partnersTitle": "Nossos Apoiadores",
+		"partnerPlaceholder": "Logo Parceiro",
+		"incentiveLaw": "Projeto incentivado pela Lei de Incentivo à Cultura",
+		"becomePartner": "Seja um parceiro"
+	},
+	"footer": {
+		"description": "Unindo a tradição milenar do taiko japonês com a energia vibrante da Amazônia. Cada batida é uma celebração da cultura, da força e da união.",
+		"quickLinks": "Links Rápidos",
+		"aboutUs": "Sobre Nós",
+		"presentations": "Apresentações",
+		"workshops": "Workshops",
+		"shop": "Loja",
+		"supportUs": "Apoie-nos",
+		"contact": "Contato",
+		"copyright": "© Copyright 2025 Kodon Amazon Taiko. Todos os direitos reservados.",
+		"privacy": "Política de Privacidade",
+		"terms": "Termos de Uso"
+	}
+}

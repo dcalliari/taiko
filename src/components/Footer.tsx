@@ -6,8 +6,11 @@ import {
 	Phone,
 	Youtube,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+	const { t } = useTranslation();
+
 	return (
 		<footer id="contato" className="bg-muted pt-16 pb-8">
 			<div className="container mx-auto px-4">
@@ -18,9 +21,7 @@ const Footer = () => {
 							KODON <span className="text-primary">AMAZON</span> TAIKO
 						</h3>
 						<p className="text-muted-foreground mb-6 max-w-md">
-							Unindo a tradição milenar do taiko japonês com a energia vibrante
-							da Amazônia. Cada batida é uma celebração da cultura, da força e
-							da união.
+							{t("footer.description")}
 						</p>
 						{/* Social Icons */}
 						<div className="flex gap-4">
@@ -51,15 +52,15 @@ const Footer = () => {
 					{/* Quick Links */}
 					<div>
 						<h4 className="font-heading font-bold text-primary-foreground uppercase tracking-wider text-sm mb-4">
-							Links Rápidos
+							{t("footer.quickLinks")}
 						</h4>
 						<ul className="space-y-3">
 							{[
-								{ label: "Sobre Nós", href: "#quem-somos" },
-								{ label: "Apresentações", href: "#galeria" },
-								{ label: "Workshops", href: "#agenda" },
-								{ label: "Loja", href: "#loja" },
-								{ label: "Apoie-nos", href: "#apoie" },
+								{ label: t("footer.aboutUs"), href: "#quem-somos" },
+								{ label: t("footer.presentations"), href: "#galeria" },
+								{ label: t("footer.workshops"), href: "#agenda" },
+								{ label: t("footer.shop"), href: "#loja" },
+								{ label: t("footer.supportUs"), href: "#apoie" },
 							].map((link) => (
 								<li key={link.label}>
 									<a
@@ -76,7 +77,7 @@ const Footer = () => {
 					{/* Contact */}
 					<div>
 						<h4 className="font-heading font-bold text-primary-foreground uppercase tracking-wider text-sm mb-4">
-							Contato
+							{t("footer.contact")}
 						</h4>
 						<ul className="space-y-4">
 							<li className="flex items-start gap-3">
@@ -112,20 +113,20 @@ const Footer = () => {
 				{/* Bottom Bar */}
 				<div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
 					<p className="text-sm text-muted-foreground text-center md:text-left">
-						© Copyright 2025 Kodon Amazon Taiko. Todos os direitos reservados.
+						{t("footer.copyright")}
 					</p>
 					<div className="flex gap-6 text-sm">
 						<a
 							href="#privacidade"
 							className="text-muted-foreground hover:text-primary transition-colors"
 						>
-							Política de Privacidade
+							{t("footer.privacy")}
 						</a>
 						<a
 							href="#termos"
 							className="text-muted-foreground hover:text-primary transition-colors"
 						>
-							Termos de Uso
+							{t("footer.terms")}
 						</a>
 					</div>
 				</div>

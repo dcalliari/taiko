@@ -1,30 +1,37 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-
-const navItems = [
-	{
-		label: "Sobre o Kodon",
-		href: "#sobre",
-		dropdown: [
-			{ label: "Quem Somos", href: "#quem-somos" },
-			{ label: "Nossa Música", href: "#musica" },
-			{ label: "História", href: "#historia" },
-		],
-	},
-	{ label: "Loja", href: "#loja" },
-	{ label: "CDs e Músicas", href: "#cds" },
-	{ label: "Agenda e Notícias", href: "#agenda" },
-	{ label: "Fotos e Vídeos", href: "#galeria" },
-	{ label: "Apoie-nos", href: "#apoie" },
-	{ label: "Contato", href: "#contato" },
-];
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+	const { t, i18n } = useTranslation();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-	const [language, setLanguage] = useState<"PT" | "JP">("PT");
+
+	const currentLang = i18n.language === "ja" ? "JP" : "PT";
+
+	const navItems = [
+		{
+			label: t("header.about"),
+			href: "#sobre",
+			dropdown: [
+				{ label: t("header.whoWeAre"), href: "#quem-somos" },
+				{ label: t("header.ourMusic"), href: "#musica" },
+				{ label: t("header.history"), href: "#historia" },
+			],
+		},
+		{ label: t("header.shop"), href: "#loja" },
+		{ label: t("header.cdsMusic"), href: "#cds" },
+		{ label: t("header.schedule"), href: "#agenda" },
+		{ label: t("header.photosVideos"), href: "#galeria" },
+		{ label: t("header.support"), href: "#apoie" },
+		{ label: t("header.contact"), href: "#contato" },
+	];
+
+	const changeLanguage = (lang: "PT" | "JP") => {
+		i18n.changeLanguage(lang === "JP" ? "ja" : "pt");
+	};
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -53,6 +60,7 @@ const Header = () => {
 					{/* Desktop Navigation */}
 					<nav className="hidden lg:flex items-center gap-8">
 						{navItems.map((item) => (
+							// biome-ignore lint/a11y/noStaticElementInteractions: Dropdown handled with mouse events
 							<div
 								key={item.label}
 								className="relative"
@@ -99,9 +107,9 @@ const Header = () => {
 						<div className="flex items-center gap-1 text-sm font-heading font-semibold">
 							<button
 								type="button"
-								onClick={() => setLanguage("PT")}
+								onClick={() => changeLanguage("PT")}
 								className={`px-2 py-1 transition-colors ${
-									language === "PT"
+									currentLang === "PT"
 										? "text-primary"
 										: "text-muted-foreground hover:text-primary"
 								}`}
@@ -111,9 +119,9 @@ const Header = () => {
 							<span className="text-muted-foreground">|</span>
 							<button
 								type="button"
-								onClick={() => setLanguage("JP")}
+								onClick={() => changeLanguage("JP")}
 								className={`px-2 py-1 transition-colors ${
-									language === "JP"
+									currentLang === "JP"
 										? "text-primary"
 										: "text-muted-foreground hover:text-primary"
 								}`}

@@ -1,0 +1,157 @@
+{
+	"header": {
+		"about": "概要",
+		"whoWeAre": "私たちについて",
+		"ourMusic": "私たちの音楽",
+		"history": "歴史",
+		"shop": "ショップ",
+		"cdsMusic": "CD／音楽",
+		"schedule": "スケジュール／ニュース",
+		"photosVideos": "写真・動画",
+		"support": "サポート",
+		"contact": "お問い合わせ"
+	},
+	"hero": {
+		"slide1": {
+			"title": "鼓動アマゾン太鼓",
+			"subtitle": "アマゾンの太鼓の力",
+			"cta": "詳しく見る"
+		},
+		"slide2": {
+			"title": "創造・魅了・革新",
+			"subtitle": "音楽を通じて",
+			"cta": "公演を見る"
+		},
+		"slide3": {
+			"title": "伝統とエネルギー",
+			"subtitle": "心を動かすリズム",
+			"cta": "歴史を見る"
+		}
+	},
+	"about": {
+		"label": "私たちの本質",
+		"title": "私たちについて",
+		"description1": "私たちは<strong>鼓動アマゾン太鼓</strong>です。日本の伝統的な組太鼓とブラジル・アマゾンの活力とエネルギーを融合させた、活気あふれる音楽家の集団です。",
+		"description2": "私たちの使命は、太鼓の一打ち一打ちを通じて喜び、力、感動を広めることです。音楽は心をつなぎ、国境を越え、人生を変える普遍的な言語だと信じています。",
+		"historyLink": "歴史を見る"
+	},
+	"pillars": {
+		"create": {
+			"title": "創造する",
+			"description": "日本の伝統的なリズムとアマゾンの鼓動を融合させたオリジナル作品。各公演のためにユニークなテーマ体験を創り出します。",
+			"link": "プロジェクトを見る"
+		},
+		"teach": {
+			"title": "教える",
+			"description": "太鼓の技術だけでなく、その哲学も伝えるワークショップや講習会：規律、尊重、内なるリズムとの繋がり。",
+			"link": "スケジュールを見る"
+		},
+		"play": {
+			"title": "演奏する",
+			"description": "文化祭、企業イベント、結婚式、お祝いでの公演。各パフォーマンスは変革的な体験です。",
+			"link": "ポートフォリオを見る"
+		}
+	},
+	"audio": {
+		"label": "試聴",
+		"title": "試聴",
+		"trackTitle": "森のリズム",
+		"trackArtist": "鼓動アマゾン太鼓 • 2024",
+		"description": "日本の伝統的な打楽器とアマゾンのリズムのユニークな融合。",
+		"play": "再生",
+		"pause": "一時停止",
+		"mute": "ミュート",
+		"unmute": "ミュート解除"
+	},
+	"news": {
+		"contactUs": "お問い合わせ",
+		"label": "最新情報",
+		"title": "最新ニュース",
+		"allPosts": "すべての記事",
+		"eventsLabel": "スケジュール",
+		"eventsTitle": "今後のイベント",
+		"noEvents": "現在予定されているイベントはありません。",
+		"calendarComplete": "カレンダーをすべて見る",
+		"newsletterTitle": "メールマガジン",
+		"newsletterDescription": "公演情報や限定コンテンツをメールでお届けします。",
+		"emailPlaceholder": "メールアドレス",
+		"subscribe": "購読する",
+		"subscribeSuccess": "ご登録ありがとうございます。",
+		"news1": {
+			"title": "太鼓ワークショップ - 2025年夏",
+			"date": "2025年1月15日",
+			"excerpt": "夏のワークショップの申し込み受付中。太鼓の基礎を学びましょう！"
+		},
+		"news2": {
+			"title": "平和劇場コンサートの新しい写真",
+			"date": "2025年1月10日",
+			"excerpt": "平和劇場での歴史的な公演の写真をご覧ください。"
+		},
+		"news3": {
+			"title": "2024年民俗祭りでの鼓動",
+			"date": "2024年12月28日",
+			"excerpt": "民俗祭りでの忘れられない公演で年を締めくくりました。"
+		},
+		"event1": {
+			"title": "太鼓入門ワークショップ",
+			"date": "2025年1月25日",
+			"location": "日本文化センター"
+		},
+		"event2": {
+			"title": "ビリャレス公園での公演",
+			"date": "2025年2月2日",
+			"location": "ベレン、パラ州"
+		}
+	},
+	"gallery": {
+		"label": "私たちの作品",
+		"title": "マルチメディアギャラリー",
+		"filters": {
+			"all": "すべて",
+			"concerts": "コンサート",
+			"festivals": "フェスティバル",
+			"collaborations": "コラボレーション",
+			"workshops": "ワークショップ",
+			"videos": "動画"
+		},
+		"items": {
+			"item1": "平和劇場での公演",
+			"item2": "森の太鼓",
+			"item3": "2024年夏ワークショップ",
+			"item4": "民俗祭り",
+			"item5": "SESCとのコラボレーション",
+			"item6": "企業公演"
+		},
+		"viewPortfolio": "ポートフォリオをすべて見る"
+	},
+	"support": {
+		"label": "支援する",
+		"title": "鼓動を支援する",
+		"description1": "鼓動アマゾン太鼓は、アマゾンの中心で太鼓芸術の保存と普及に専念する非営利文化団体です。",
+		"description2": "皆様のご寄付は、楽器や伝統衣装の維持、そしてこの変革的な体験にアクセスできない地域社会に太鼓のエネルギーを届けるために役立てられます。",
+		"stats": {
+			"presentations": "年間公演数",
+			"people": "影響を受けた人々",
+			"years": "歴史の年数",
+			"passion": "情熱"
+		},
+		"donateNow": "寄付する",
+		"partnersTitle": "パートナー",
+		"partnerPlaceholder": "パートナーロゴ",
+		"incentiveLaw": "文化振興法による支援を受けたプロジェクト",
+		"becomePartner": "パートナーになる"
+	},
+	"footer": {
+		"description": "日本の太鼓の千年の伝統とアマゾンの活気あるエネルギーを融合。各打音は文化、力、団結の祝典です。",
+		"quickLinks": "クイックリンク",
+		"aboutUs": "私たちについて",
+		"presentations": "公演",
+		"workshops": "ワークショップ",
+		"shop": "ショップ",
+		"supportUs": "支援する",
+		"contact": "お問い合わせ",
+		"copyright": "© 2025 鼓動アマゾン太鼓. 無断転載を禁じます。",
+		"privacy": "プライバシーポリシー",
+		"terms": "利用規約"
+	}
+}

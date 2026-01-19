@@ -1,37 +1,36 @@
 import { motion, useInView } from "framer-motion";
 import { GraduationCap, Lightbulb, Music } from "lucide-react";
 import { useRef } from "react";
-
-const pillars = [
-	{
-		icon: Lightbulb,
-		title: "NÓS CRIAMOS",
-		description:
-			"Composições originais que fundem ritmos tradicionais japoneses com a pulsação amazônica. Criamos experiências temáticas únicas para cada apresentação.",
-		link: { label: "- veja nossos projetos -", href: "#projetos" },
-		color: "primary",
-	},
-	{
-		icon: GraduationCap,
-		title: "NÓS ENSINAMOS",
-		description:
-			"Workshops e oficinas que transmitem não apenas a técnica do taiko, mas também sua filosofia: disciplina, respeito e conexão com o ritmo interior.",
-		link: { label: "- veja nossa agenda -", href: "#agenda" },
-		color: "secondary",
-	},
-	{
-		icon: Music,
-		title: "NÓS TOCAMOS",
-		description:
-			"Apresentações em festivais culturais, eventos corporativos, casamentos e celebrações. Cada performance é uma experiência transformadora.",
-		link: { label: "- veja nosso portfólio -", href: "#galeria" },
-		color: "primary",
-	},
-];
+import { useTranslation } from "react-i18next";
 
 const PillarsSection = () => {
+	const { t } = useTranslation();
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+	const pillars = [
+		{
+			icon: Lightbulb,
+			title: t("pillars.create.title"),
+			description: t("pillars.create.description"),
+			link: { label: t("pillars.create.link"), href: "#projetos" },
+			color: "primary",
+		},
+		{
+			icon: GraduationCap,
+			title: t("pillars.teach.title"),
+			description: t("pillars.teach.description"),
+			link: { label: t("pillars.teach.link"), href: "#agenda" },
+			color: "secondary",
+		},
+		{
+			icon: Music,
+			title: t("pillars.play.title"),
+			description: t("pillars.play.description"),
+			link: { label: t("pillars.play.link"), href: "#galeria" },
+			color: "primary",
+		},
+	];
 
 	return (
 		<section className="section-padding bg-muted">

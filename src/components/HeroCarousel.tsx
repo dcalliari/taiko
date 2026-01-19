@@ -1,40 +1,42 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import heroDrums from "@/assets/hero-drums.jpg";
 import heroPerformance from "@/assets/hero-performance.jpg";
 import heroTaiko from "@/assets/hero-taiko.jpg";
 
-const slides = [
-	{
-		image: heroTaiko,
-		title: "KODON AMAZON TAIKO",
-		subtitle: "A Força do Tambor na Amazônia",
-		cta: { label: "SAIBA MAIS", href: "#quem-somos" },
-	},
-	{
-		image: heroDrums,
-		title: "CRIAMOS, CATIVAMOS E INOVAMOS",
-		subtitle: "Através da Música",
-		cta: { label: "NOSSAS APRESENTAÇÕES", href: "#galeria" },
-	},
-	{
-		image: heroPerformance,
-		title: "ENRAIZADOS NA TRADIÇÃO",
-		subtitle: "Com o Coração na Amazônia",
-		cta: { label: "ÚLTIMAS NOTÍCIAS", href: "#agenda" },
-	},
-];
-
 const HeroCarousel = () => {
+	const { t } = useTranslation();
 	const [currentSlide, setCurrentSlide] = useState(0);
+
+	const slides = [
+		{
+			image: heroTaiko,
+			title: t("hero.slide1.title"),
+			subtitle: t("hero.slide1.subtitle"),
+			cta: { label: t("hero.slide1.cta"), href: "#quem-somos" },
+		},
+		{
+			image: heroDrums,
+			title: t("hero.slide2.title"),
+			subtitle: t("hero.slide2.subtitle"),
+			cta: { label: t("hero.slide2.cta"), href: "#galeria" },
+		},
+		{
+			image: heroPerformance,
+			title: t("hero.slide3.title"),
+			subtitle: t("hero.slide3.subtitle"),
+			cta: { label: t("hero.slide3.cta"), href: "#agenda" },
+		},
+	];
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentSlide((prev) => (prev + 1) % slides.length);
 		}, 6000);
 		return () => clearInterval(interval);
-	}, []);
+	}, [slides.length]);
 
 	const goToSlide = (index: number) => {
 		setCurrentSlide(index);
