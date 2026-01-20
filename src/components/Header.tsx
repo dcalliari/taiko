@@ -53,7 +53,9 @@ const Header = () => {
 					{/** biome-ignore lint/a11y/useValidAnchor: This is the intended behavior, to go back to the top of the page */}
 					<a href="#" className="flex items-center gap-2">
 						<span className="font-heading font-black text-xl md:text-2xl tracking-wider text-primary-foreground">
-							KODON <span className="text-primary">AMAZON</span> TAIKO
+							{t("header.title1")}{" "}
+							<span className="text-primary">{t("header.title2")}</span>{" "}
+							{t("header.title3")}
 						</span>
 					</a>
 
