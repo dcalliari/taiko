@@ -4,7 +4,7 @@ import {
 	useScroll,
 	useTransform,
 } from "framer-motion";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import heroDrums from "@/assets/hero-drums.jpg";
@@ -56,18 +56,6 @@ const HeroCarousel = () => {
 		}, 6000);
 		return () => clearInterval(interval);
 	}, [slides.length]);
-
-	const goToSlide = (index: number) => {
-		setCurrentSlide(index);
-	};
-
-	const nextSlide = () => {
-		setCurrentSlide((prev) => (prev + 1) % slides.length);
-	};
-
-	const prevSlide = () => {
-		setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-	};
 
 	return (
 		<section ref={heroRef} className="relative h-screen w-full overflow-hidden">
@@ -180,50 +168,6 @@ const HeroCarousel = () => {
 						</motion.a>
 					</motion.div>
 				</div>
-			</motion.div>
-
-			{/* Navigation Arrows */}
-			<motion.button
-				type="button"
-				onClick={prevSlide}
-				className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors bg-muted/20 hover:bg-muted/40 backdrop-blur-sm rounded-full"
-				aria-label="Slide anterior"
-				style={{ opacity: contentOpacity }}
-				whileHover={{ scale: 1.1 }}
-				whileTap={{ scale: 0.95 }}
-			>
-				<ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
-			</motion.button>
-			<motion.button
-				type="button"
-				onClick={nextSlide}
-				className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors bg-muted/20 hover:bg-muted/40 backdrop-blur-sm rounded-full"
-				aria-label="Próximo slide"
-				style={{ opacity: contentOpacity }}
-				whileHover={{ scale: 1.1 }}
-				whileTap={{ scale: 0.95 }}
-			>
-				<ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
-			</motion.button>
-
-			{/* Slide Indicators */}
-			<motion.div
-				className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3"
-				style={{ opacity: contentOpacity }}
-			>
-				{slides.map((_, index) => (
-					<button
-						type="button"
-						key={crypto.randomUUID()}
-						onClick={() => goToSlide(index)}
-						className={`h-3 rounded-full transition-all duration-500 ${
-							index === currentSlide
-								? "bg-primary w-10"
-								: "bg-primary-foreground/30 hover:bg-primary-foreground/50 w-3"
-						}`}
-						aria-label={`Ir para slide ${index + 1}`}
-					/>
-				))}
 			</motion.div>
 
 			{/* Scroll Indicator with Parallax */}
