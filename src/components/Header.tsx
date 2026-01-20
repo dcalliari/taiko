@@ -73,7 +73,7 @@ const Header = () => {
 							>
 								<a
 									href={item.href}
-									className="font-heading text-sm font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+									className="font-heading text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
 								>
 									{item.label}
 									{item.dropdown && <ChevronDown className="w-4 h-4" />}

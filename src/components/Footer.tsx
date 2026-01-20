@@ -24,7 +24,9 @@ const Footer = () => {
 						{/* Logo & Description */}
 						<div className="lg:col-span-2">
 							<h3 className="font-heading font-black text-2xl text-primary-foreground mb-4">
-								KODON <span className="text-primary">AMAZON</span> TAIKO
+								{t("footer.title1")}{" "}
+								<span className="text-primary">{t("footer.title2")}</span>{" "}
+								{t("footer.title3")}
 							</h3>
 							<p className="text-muted-foreground mb-6 max-w-md">
 								{t("footer.description")}
