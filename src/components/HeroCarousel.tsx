@@ -29,31 +29,37 @@ const HeroCarousel = () => {
 	const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 	const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.6, 0.9]);
 
+	// Slide duration in seconds
+	const SLIDE_DURATION = 6;
+
 	const slides = [
 		{
 			image: heroTaiko,
 			title: t("hero.slide1.title"),
 			subtitle: t("hero.slide1.subtitle"),
 			cta: { label: t("hero.slide1.cta"), href: "#quem-somos" },
+			zoomOrigin: "bottom",
 		},
 		{
 			image: heroDrums,
 			title: t("hero.slide2.title"),
 			subtitle: t("hero.slide2.subtitle"),
 			cta: { label: t("hero.slide2.cta"), href: "#galeria" },
+			zoomOrigin: "top right",
 		},
 		{
 			image: heroPerformance,
 			title: t("hero.slide3.title"),
 			subtitle: t("hero.slide3.subtitle"),
 			cta: { label: t("hero.slide3.cta"), href: "#historia" },
+			zoomOrigin: "top left",
 		},
 	];
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentSlide((prev) => (prev + 1) % slides.length);
-		}, 6000);
+		}, SLIDE_DURATION * 1000);
 		return () => clearInterval(interval);
 	}, [slides.length]);
 
@@ -70,15 +76,24 @@ const HeroCarousel = () => {
 				<AnimatePresence mode="wait">
 					<motion.div
 						key={currentSlide}
-						initial={{ opacity: 0, scale: 1.1 }}
-						animate={{ opacity: 1, scale: 1 }}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 1.2 }}
 						className="absolute inset-0"
 					>
-						<div
+						<motion.div
 							className="absolute inset-0 bg-cover bg-center"
-							style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
+							style={{
+								backgroundImage: `url(${slides[currentSlide].image})`,
+								transformOrigin: slides[currentSlide].zoomOrigin,
+							}}
+							initial={{ scale: 1 }}
+							animate={{ scale: 1.1 }}
+							transition={{
+								duration: SLIDE_DURATION,
+								ease: "linear",
+							}}
 						/>
 					</motion.div>
 				</AnimatePresence>
