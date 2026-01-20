@@ -38,6 +38,50 @@
 		"description2": "Nossa missão é espalhar alegria, força e emoção através de cada batida do tambor. Acreditamos que a música é uma linguagem universal que conecta corações, transcende fronteiras e transforma vidas.",
 		"historyLink": "Conheça nossa história"
 	},
+	"history": {
+		"label": "Nossa Trajetória",
+		"title": "NOSSA HISTÓRIA",
+		"description": "Uma jornada de paixão, dedicação e amor pela arte do taiko, desde os primeiros passos até nos tornarmos referência na percussão japonesa na Amazônia.",
+		"timeline": {
+			"item1": {
+				"year": "2010",
+				"title": "O Início",
+				"description": "Fundação do Kodon Amazon Taiko em Belém, com um pequeno grupo de entusiastas apaixonados pela cultura japonesa e pela percussão."
+			},
+			"item2": {
+				"year": "2013",
+				"title": "Primeira Grande Apresentação",
+				"description": "Nossa primeira apresentação no Festival do Japão em Belém, marcando o início de nossa presença nos principais eventos culturais da região."
+			},
+			"item3": {
+				"year": "2016",
+				"title": "Expansão e Reconhecimento",
+				"description": "Início dos workshops e oficinas, compartilhando a arte do taiko com a comunidade e formando novos membros."
+			},
+			"item4": {
+				"year": "2020",
+				"title": "Adaptação e Resiliência",
+				"description": "Durante a pandemia, mantivemos nossa conexão através de apresentações virtuais e ensaios adaptados, fortalecendo nossos laços."
+			},
+			"item5": {
+				"year": "2024",
+				"title": "Consolidação",
+				"description": "Celebramos mais de uma década de história com apresentações no Theatro da Paz e participação em festivais nacionais e internacionais."
+			}
+		},
+		"mission": {
+			"title": "Nossa Missão",
+			"description": "Difundir a arte do taiko na Amazônia, promovendo a integração cultural entre Brasil e Japão através da música e da educação."
+		},
+		"vision": {
+			"title": "Nossa Visão",
+			"description": "Ser referência nacional na percussão japonesa, levando a energia e a tradição do taiko para todas as comunidades."
+		},
+		"values": {
+			"title": "Nossos Valores",
+			"description": "Disciplina, respeito, união, criatividade e paixão pela arte guiam cada uma de nossas ações e apresentações."
+		}
+	},
 	"pillars": {
 		"create": {
 			"title": "NÓS CRIAMOS",
@@ -156,5 +200,117 @@
 		"copyright": "© Copyright 2025 Kodon Amazon Taiko. Todos os direitos reservados.",
 		"privacy": "Política de Privacidade",
 		"terms": "Termos de Uso"
+	},
+	"privacy": {
+		"title": "Política de Privacidade",
+		"backHome": "Voltar ao Início",
+		"lastUpdated": "Última atualização",
+		"updateDate": "20 de Janeiro de 2026",
+		"sections": {
+			"intro": {
+				"title": "Introdução",
+				"content": "O Kodon Amazon Taiko está comprometido em proteger sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações quando você visita nosso site ou utiliza nossos serviços."
+			},
+			"dataCollection": {
+				"title": "Informações que Coletamos",
+				"content": "Podemos coletar os seguintes tipos de informações:",
+				"items": {
+					"item1": "Informações pessoais fornecidas voluntariamente (nome, e-mail, telefone)",
+					"item2": "Informações de navegação (endereço IP, tipo de navegador, páginas visitadas)",
+					"item3": "Informações de inscrição em newsletter e eventos",
+					"item4": "Dados de comunicação quando você entra em contato conosco"
+				}
+			},
+			"dataUse": {
+				"title": "Como Usamos suas Informações",
+				"content": "Utilizamos as informações coletadas para:",
+				"items": {
+					"item1": "Enviar informações sobre eventos, apresentações e workshops",
+					"item2": "Responder a suas perguntas e solicitações",
+					"item3": "Melhorar nosso site e serviços",
+					"item4": "Cumprir obrigações legais e regulatórias"
+				}
+			},
+			"dataProtection": {
+				"title": "Proteção de Dados",
+				"content": "Implementamos medidas de segurança técnicas e organizacionais para proteger suas informações pessoais contra acesso não autorizado, alteração, divulgação ou destruição."
+			},
+			"cookies": {
+				"title": "Cookies",
+				"content": "Nosso site pode utilizar cookies para melhorar sua experiência de navegação. Você pode configurar seu navegador para recusar cookies, mas isso pode afetar algumas funcionalidades do site."
+			},
+			"thirdParties": {
+				"title": "Compartilhamento com Terceiros",
+				"content": "Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros para fins de marketing sem seu consentimento explícito. Podemos compartilhar informações com prestadores de serviços que nos auxiliam na operação do site."
+			},
+			"userRights": {
+				"title": "Seus Direitos",
+				"content": "De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem direito a:",
+				"items": {
+					"item1": "Acessar seus dados pessoais",
+					"item2": "Corrigir dados incompletos ou desatualizados",
+					"item3": "Solicitar a exclusão de seus dados",
+					"item4": "Revogar seu consentimento a qualquer momento"
+				}
+			},
+			"contact": {
+				"title": "Contato",
+				"content": "Se você tiver dúvidas sobre esta Política de Privacidade ou quiser exercer seus direitos, entre em contato conosco:"
+			}
+		}
+	},
+	"terms": {
+		"title": "Termos de Uso",
+		"backHome": "Voltar ao Início",
+		"lastUpdated": "Última atualização",
+		"updateDate": "20 de Janeiro de 2026",
+		"sections": {
+			"intro": {
+				"title": "Aceitação dos Termos",
+				"content": "Ao acessar e usar o site do Kodon Amazon Taiko, você concorda em cumprir e estar vinculado a estes Termos de Uso. Se você não concordar com qualquer parte destes termos, não deverá usar nosso site."
+			},
+			"useOfSite": {
+				"title": "Uso do Site",
+				"content": "Você concorda em usar nosso site apenas para fins legais e de maneira que não:",
+				"items": {
+					"item1": "Viole qualquer lei ou regulamento aplicável",
+					"item2": "Infrinja os direitos de propriedade intelectual de terceiros",
+					"item3": "Transmita qualquer material ilegal, ofensivo ou prejudicial"
+				}
+			},
+			"intellectualProperty": {
+				"title": "Propriedade Intelectual",
+				"content": "Todo o conteúdo do site, incluindo textos, imagens, vídeos, logotipos, músicas e design, é propriedade do Kodon Amazon Taiko ou de seus licenciadores e está protegido por leis de direitos autorais. Você não pode reproduzir, distribuir ou usar qualquer conteúdo sem nossa autorização prévia por escrito."
+			},
+			"userContent": {
+				"title": "Conteúdo do Usuário",
+				"content": "Ao enviar conteúdo para nosso site (comentários, fotos, etc.), você nos concede uma licença não exclusiva, gratuita e mundial para usar, reproduzir e publicar esse conteúdo em conexão com nossas atividades."
+			},
+			"eventsServices": {
+				"title": "Eventos e Serviços",
+				"content": "Ao se inscrever em eventos, workshops ou adquirir serviços:",
+				"items": {
+					"item1": "Você concorda com as políticas específicas de cada evento",
+					"item2": "Reservamo-nos o direito de cancelar ou modificar eventos com aviso prévio",
+					"item3": "Políticas de reembolso serão informadas no momento da inscrição"
+				}
+			},
+			"liability": {
+				"title": "Limitação de Responsabilidade",
+				"content": "O Kodon Amazon Taiko não será responsável por quaisquer danos diretos, indiretos, incidentais ou consequenciais resultantes do uso ou impossibilidade de uso do site ou serviços."
+			},
+			"changes": {
+				"title": "Alterações nos Termos",
+				"content": "Reservamo-nos o direito de modificar estes Termos de Uso a qualquer momento. As alterações entrarão em vigor imediatamente após a publicação no site. Recomendamos que você revise periodicamente esta página."
+			},
+			"governingLaw": {
+				"title": "Lei Aplicável",
+				"content": "Estes Termos de Uso são regidos pelas leis da República Federativa do Brasil. Qualquer disputa será resolvida nos tribunais da cidade de Belém, Pará."
+			},
+			"contact": {
+				"title": "Contato",
+				"content": "Para dúvidas sobre estes Termos de Uso, entre em contato conosco:"
+			}
+		}
 	}
 }

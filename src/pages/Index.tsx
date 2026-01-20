@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import GallerySection from "@/components/GallerySection";
 import Header from "@/components/Header";
 import HeroCarousel from "@/components/HeroCarousel";
+import HistorySection from "@/components/HistorySection";
 import NewsSection from "@/components/NewsSection";
 import PillarsSection from "@/components/PillarsSection";
 import SupportSection from "@/components/SupportSection";
@@ -15,6 +16,7 @@ const Index = () => {
 			<main>
 				<HeroCarousel />
 				<AboutSection />
+				<HistorySection />
 				<PillarsSection />
 				<AudioPlayer />
 				<NewsSection />
