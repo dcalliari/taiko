@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 	const { t, i18n } = useTranslation();
@@ -21,7 +22,7 @@ const Header = () => {
 				{ label: t("header.history"), href: "#historia" },
 			],
 		},
-		{ label: t("header.shop"), href: "#loja" },
+		{ label: t("header.shop"), href: "/loja", isRoute: true },
 		{ label: t("header.cdsMusic"), href: "#cds" },
 		{ label: t("header.schedule"), href: "#agenda" },
 		{ label: t("header.photosVideos"), href: "#galeria" },
@@ -71,13 +72,22 @@ const Header = () => {
 								}
 								onMouseLeave={() => setActiveDropdown(null)}
 							>
-								<a
-									href={item.href}
-									className="font-heading text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
-								>
-									{item.label}
-									{item.dropdown && <ChevronDown className="w-4 h-4" />}
-								</a>
+								{item.isRoute ? (
+									<Link
+										to={item.href}
+										className="font-heading text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+									>
+										{item.label}
+									</Link>
+								) : (
+									<a
+										href={item.href}
+										className="font-heading text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+									>
+										{item.label}
+										{item.dropdown && <ChevronDown className="w-4 h-4" />}
+									</a>
+								)}
 
 								{/* Dropdown */}
 								<AnimatePresence>
@@ -158,13 +168,23 @@ const Header = () => {
 							<div className="py-4 space-y-2">
 								{navItems.map((item) => (
 									<div key={item.label}>
-										<a
-											href={item.href}
-											className="block px-4 py-3 font-heading text-sm font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary hover:bg-muted/80 transition-colors"
-											onClick={() => setIsMobileMenuOpen(false)}
-										>
-											{item.label}
-										</a>
+										{item.isRoute ? (
+											<Link
+												to={item.href}
+												className="block px-4 py-3 font-heading text-sm font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary hover:bg-muted/80 transition-colors"
+												onClick={() => setIsMobileMenuOpen(false)}
+											>
+												{item.label}
+											</Link>
+										) : (
+											<a
+												href={item.href}
+												className="block px-4 py-3 font-heading text-sm font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary hover:bg-muted/80 transition-colors"
+												onClick={() => setIsMobileMenuOpen(false)}
+											>
+												{item.label}
+											</a>
+										)}
 										{item.dropdown && (
 											<div className="pl-8">
 												{item.dropdown.map((subItem) => (

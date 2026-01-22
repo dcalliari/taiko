@@ -262,6 +262,62 @@
 			}
 		}
 	},
+	"store": {
+		"label": "Loja Oficial",
+		"title": "NOSSA LOJA",
+		"description": "Apoie o Kodon Amazon Taiko adquirindo nossos produtos exclusivos. Cada compra ajuda a manter viva a tradição do taiko na Amazônia.",
+		"backHome": "Voltar ao Início",
+		"filters": {
+			"all": "Todos",
+			"clothing": "Vestuário",
+			"accessories": "Acessórios",
+			"music": "Música"
+		},
+		"products": {
+			"tshirt": {
+				"name": "Camiseta Kodon Oficial",
+				"description": "Camiseta 100% algodão com estampa exclusiva do Kodon Amazon Taiko."
+			},
+			"hoodie": {
+				"name": "Moletom Kodon Premium",
+				"description": "Moletom confortável com capuz e bordado do logo Kodon."
+			},
+			"bachi": {
+				"name": "Bachi Artesanal",
+				"description": "Par de baquetas de taiko feitas à mão por artesãos locais."
+			},
+			"cd": {
+				"name": "CD - Ritmos da Amazônia",
+				"description": "Nosso álbum de estreia com composições originais."
+			},
+			"poster": {
+				"name": "Pôster Kodon Art",
+				"description": "Pôster artístico em papel de alta qualidade 50x70cm."
+			},
+			"cap": {
+				"name": "Boné Kodon",
+				"description": "Boné bordado com ajuste traseiro."
+			},
+			"totebag": {
+				"name": "Ecobag Kodon",
+				"description": "Bolsa ecológica de algodão com estampa artística."
+			},
+			"vinyl": {
+				"name": "Vinil - Edição Limitada",
+				"description": "Vinil exclusivo com arte de capa especial para colecionadores."
+			}
+		},
+		"addToCart": "Adicionar",
+		"selectSize": "Selecione o tamanho:",
+		"size": "Tamanho",
+		"cancel": "Cancelar",
+		"cart": "Carrinho",
+		"emptyCart": "Seu carrinho está vazio",
+		"total": "Total:",
+		"checkout": "Finalizar Compra",
+		"checkoutDisclaimer": "Esta é uma loja demonstrativa. Nenhuma compra real será processada.",
+		"disclaimer": "⚠️ Esta é uma loja demonstrativa para fins de apresentação. Os produtos e preços são fictícios e nenhuma transação real será realizada."
+	},
 	"terms": {
 		"title": "Termos de Uso",
 		"backHome": "Voltar ao Início",
