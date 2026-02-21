@@ -2,15 +2,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
 	const { t, i18n } = useTranslation();
+	const location = useLocation();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
 	const currentLang = i18n.language === "ja" ? "JP" : "PT";
+	const isHomePage = location.pathname === "/";
 
 	const navItems = [
 		{
@@ -23,7 +25,7 @@ const Header = () => {
 			],
 		},
 		{ label: t("header.shop"), href: "/loja", isRoute: true },
-		{ label: t("header.cdsMusic"), href: "#cds" },
+		// { label: t("header.cdsMusic"), href: "#cds" },
 		{ label: t("header.schedule"), href: "#agenda" },
 		{ label: t("header.photosVideos"), href: "#galeria" },
 		{ label: t("header.support"), href: "#apoie" },
@@ -42,6 +44,18 @@ const Header = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
+	useEffect(() => {
+		const hash = location.hash;
+		if (hash) {
+			setTimeout(() => {
+				const element = document.querySelector(hash);
+				if (element) {
+					element.scrollIntoView({ behavior: "smooth", block: "start" });
+				}
+			}, 100);
+		}
+	}, [location]);
+
 	return (
 		<header
 			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -51,14 +65,22 @@ const Header = () => {
 			<div className="container mx-auto px-4">
 				<div className="flex items-center justify-between h-20">
 					{/* Logo */}
-					{/** biome-ignore lint/a11y/useValidAnchor: This is the intended behavior, to go back to the top of the page */}
-					<a href="#" className="flex items-center gap-2">
+					<Link
+						to="/"
+						className="flex items-center gap-2"
+						onClick={(e) => {
+							if (isHomePage) {
+								e.preventDefault();
+								window.scrollTo({ top: 0, behavior: "smooth" });
+							}
+						}}
+					>
 						<span className="font-heading font-black text-xl md:text-2xl tracking-wider text-primary-foreground">
 							{t("header.title1")}{" "}
 							<span className="text-primary">{t("header.title2")}</span>{" "}
 							{t("header.title3")}
 						</span>
-					</a>
+					</Link>
 
 					{/* Desktop Navigation */}
 					<nav className="hidden lg:flex items-center gap-8">
@@ -80,13 +102,13 @@ const Header = () => {
 										{item.label}
 									</Link>
 								) : (
-									<a
-										href={item.href}
+									<Link
+										to={isHomePage ? item.href : `/${item.href}`}
 										className="font-heading text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
 									>
 										{item.label}
 										{item.dropdown && <ChevronDown className="w-4 h-4" />}
-									</a>
+									</Link>
 								)}
 
 								{/* Dropdown */}
@@ -99,13 +121,13 @@ const Header = () => {
 											className="absolute top-full left-0 mt-2 py-2 bg-muted border border-border rounded-lg shadow-xl min-w-[180px] z-50"
 										>
 											{item.dropdown.map((subItem) => (
-												<a
+												<Link
 													key={subItem.label}
-													href={subItem.href}
+													to={isHomePage ? subItem.href : `/${subItem.href}`}
 													className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted/80 transition-colors"
 												>
 													{subItem.label}
-												</a>
+												</Link>
 											))}
 										</motion.div>
 									)}
@@ -177,25 +199,25 @@ const Header = () => {
 												{item.label}
 											</Link>
 										) : (
-											<a
-												href={item.href}
+											<Link
+												to={isHomePage ? item.href : `/${item.href}`}
 												className="block px-4 py-3 font-heading text-sm font-semibold uppercase tracking-wide text-muted-foreground hover:text-primary hover:bg-muted/80 transition-colors"
 												onClick={() => setIsMobileMenuOpen(false)}
 											>
 												{item.label}
-											</a>
+											</Link>
 										)}
 										{item.dropdown && (
 											<div className="pl-8">
 												{item.dropdown.map((subItem) => (
-													<a
+													<Link
 														key={subItem.label}
-														href={subItem.href}
+														to={isHomePage ? subItem.href : `/${subItem.href}`}
 														className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
 														onClick={() => setIsMobileMenuOpen(false)}
 													>
 														{subItem.label}
-													</a>
+													</Link>
 												))}
 											</div>
 										)}
