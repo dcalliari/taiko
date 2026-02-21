@@ -18,8 +18,8 @@ const Header = () => {
 			href: "#sobre",
 			dropdown: [
 				{ label: t("header.whoWeAre"), href: "#quem-somos" },
-				{ label: t("header.ourMusic"), href: "#musica" },
 				{ label: t("header.history"), href: "#historia" },
+				{ label: t("header.ourMusic"), href: "#musica" },
 			],
 		},
 		{ label: t("header.shop"), href: "/loja", isRoute: true },
