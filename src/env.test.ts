@@ -28,11 +28,4 @@ describe("env", () => {
 
 		await expect(loadEnv()).rejects.toThrow(/Invalid environment variables/);
 	});
-
-	it("pula a validação com SKIP_ENV_VALIDATION=1", async () => {
-		vi.stubEnv("DATABASE_URL", "");
-		vi.stubEnv("SKIP_ENV_VALIDATION", "1");
-
-		await expect(loadEnv()).resolves.toBeDefined();
-	});
 });

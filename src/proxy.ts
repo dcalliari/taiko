@@ -13,8 +13,7 @@ export function proxy(request: NextRequest) {
 	});
 
 	// O Next lê o nonce do cabeçalho CSP da requisição para aplicá-lo aos
-	// scripts que gera; x-nonce fica disponível para <Script nonce>.
-	request.headers.set("x-nonce", nonce);
+	// scripts que gera.
 	request.headers.set("Content-Security-Policy", csp);
 
 	const response = handleI18nRouting(request);

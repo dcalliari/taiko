@@ -14,8 +14,20 @@ export type Database = PgDatabase<PgQueryResultHKT, typeof schema>;
 // para não abrir um novo conjunto de conexões a cada recarga.
 const globalForDb = globalThis as typeof globalThis & { pgPool?: Pool };
 
-const pool =
-	globalForDb.pgPool ?? new Pool({ connectionString: env.DATABASE_URL });
+function createPool() {
+	const created = new Pool({
+		connectionString: env.DATABASE_URL,
+		connectionTimeoutMillis: 5_000,
+	});
+	// Sem ouvinte, a queda de uma conexão ociosa (reinício ou failover do banco)
+	// vira exceção não capturada e derruba o processo.
+	created.on("error", (error) => {
+		console.error("Pool do Postgres: conexão ociosa caiu", error);
+	});
+	return created;
+}
+
+const pool = globalForDb.pgPool ?? createPool();
 
 if (env.NODE_ENV !== "production") {
 	globalForDb.pgPool = pool;
