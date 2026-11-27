@@ -45,6 +45,14 @@ describe("TaikoSheet", () => {
 		expect(count(active, "mix-blend-mode")).toBe(2);
 	});
 
+	it("tells the browser to print on the sheet's own paper, without margins", () => {
+		const html = renderToStaticMarkup(<TaikoSheet song={ichigo} />);
+		expect(html).toContain("@page { size: 595.28pt 841.89pt; margin: 0; }");
+		// Only the last page may end without a page break.
+		expect(count(html, "break-after:page")).toBe(1);
+		expect(count(html, "break-after:auto")).toBe(1);
+	});
+
 	it("ignores a cursor that points at nothing on this view", () => {
 		const html = renderToStaticMarkup(
 			<TaikoSheet song={ichigo} activeKeys={["9.9.9.9.9"]} />,

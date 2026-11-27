@@ -116,6 +116,7 @@ export function TaikoSheet({
 	pageLabel = "{title}, página {n} de {total}",
 }: TaikoSheetProps) {
 	const layout = cachedLayout(song, view, options);
+	const { width, height } = layout.pages[0];
 	return (
 		<div
 			className={cn(
@@ -123,6 +124,11 @@ export function TaikoSheet({
 				className,
 			)}
 		>
+			{/* Printing from the browser uses the sheet's own paper size and no
+			    margins, so each SVG fills exactly one printed page. */}
+			<style href={`taiko-sheet-page-${width}x${height}`} precedence="default">
+				{`@page { size: ${width}pt ${height}pt; margin: 0; }`}
+			</style>
 			{layout.pages.map((page, pageIndex) => (
 				<svg
 					// biome-ignore lint/suspicious/noArrayIndexKey: pages only exist by position
@@ -133,8 +139,12 @@ export function TaikoSheet({
 						.replace("{title}", song.title)
 						.replace("{n}", String(pageIndex + 1))
 						.replace("{total}", String(layout.pages.length))}
-					className="h-auto w-full max-w-[794px] bg-white shadow-lg print:max-w-none print:shadow-none"
-					style={{ fontFamily: FONT_FAMILY, breakAfter: "page" }}
+					className="h-auto w-full max-w-[794px] bg-white shadow-lg print:block print:max-h-screen print:max-w-none print:shadow-none"
+					style={{
+						fontFamily: FONT_FAMILY,
+						breakInside: "avoid",
+						breakAfter: pageIndex < layout.pages.length - 1 ? "page" : "auto",
+					}}
 				>
 					<SheetPage page={page} />
 					{activeKeys.map((key) => {
