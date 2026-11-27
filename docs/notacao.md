@@ -147,7 +147,7 @@ Um **tempo** é uma palavra escrita (seção 4). O `bpm` conta esses tempos.
 
 O `compasso` só serve ao metrônomo (acento no primeiro tempo) e às barras da grade. Músicas de frase irregular, como a Miyake, ficam em `livre`.
 
-Instrumentos: `nagado`, `shime`, `okedo`, `odaiko`, `atarigane`. Cores de grupo: `azul`, `laranja`, `verde`, `rosa`.
+Instrumentos: `nagado`, `shime`, `okedo`, `odaiko`, `atarigane`. Cores de grupo: `azul`, `laranja`.
 
 ### Seções e frases
 

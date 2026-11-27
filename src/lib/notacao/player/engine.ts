@@ -58,8 +58,6 @@ const EPSILON = 1e-9;
 const GROUP_PAN: Record<GroupColor, number> = {
 	azul: -0.35,
 	laranja: 0.35,
-	verde: -0.15,
-	rosa: 0.15,
 };
 
 export function createWebAudio(): PlayerAudio {
@@ -116,6 +114,8 @@ type Region = {
 	to: number;
 	loop: boolean;
 };
+
+const hasLength = (step: TimelineStep) => step.end - step.start > EPSILON;
 
 const sameList = (a: readonly unknown[], b: readonly unknown[]) =>
 	a.length === b.length && a.every((value, index) => value === b[index]);
@@ -275,7 +275,7 @@ export class TaikoPlayer {
 	setLoopStep(step: number | null): void {
 		if (step !== null) {
 			const target = this.timeline.steps[step];
-			if (!target || target.end - target.start <= EPSILON) return;
+			if (!target || !hasLength(target)) return;
 		}
 		this.relocate(() => this.update({ loopStep: step }));
 	}
@@ -285,7 +285,9 @@ export class TaikoPlayer {
 		const target = this.timeline.steps[step];
 		if (!target) return;
 		this.relocate(() => {
-			if (this.snapshot.loopStep !== null) this.update({ loopStep: step });
+			if (this.snapshot.loopStep !== null && hasLength(target)) {
+				this.update({ loopStep: step });
+			}
 		}, target.start);
 	}
 
@@ -511,7 +513,7 @@ export class TaikoPlayer {
 		const { steps } = this.timeline;
 		for (let index = steps.length - 1; index >= 0; index--) {
 			const step = steps[index];
-			if (step.end - step.start <= EPSILON) continue;
+			if (!hasLength(step)) continue;
 			if (position >= step.start - EPSILON) return index;
 		}
 		return -1;

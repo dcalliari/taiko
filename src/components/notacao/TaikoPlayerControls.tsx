@@ -86,7 +86,8 @@ export function TaikoPlayerControls({
 	const playing = snapshot.status === "playing";
 	const { steps } = snapshot;
 	const groups = groupsOf(song);
-	const bpm = Math.round(song.bpm * snapshot.tempoScale);
+	const writtenBpm = steps[snapshot.step]?.bpm ?? song.bpm;
+	const bpm = Math.round(writtenBpm * snapshot.tempoScale);
 
 	return (
 		<div
@@ -133,12 +134,12 @@ export function TaikoPlayerControls({
 					<input
 						id={tempoId}
 						type="range"
-						min={Math.ceil(song.bpm * MIN_TEMPO_SCALE)}
-						max={Math.floor(song.bpm * MAX_TEMPO_SCALE)}
+						min={Math.ceil(writtenBpm * MIN_TEMPO_SCALE)}
+						max={Math.floor(writtenBpm * MAX_TEMPO_SCALE)}
 						step={1}
 						value={bpm}
 						onChange={(event) =>
-							player.setTempoScale(Number(event.target.value) / song.bpm)
+							player.setTempoScale(Number(event.target.value) / writtenBpm)
 						}
 						className="w-40 accent-primary"
 					/>

@@ -11,7 +11,7 @@ export const INSTRUMENTS = [
 export type Instrument = (typeof INSTRUMENTS)[number];
 
 /** Row colors of the Kodon sheet. Each color is one "grupo/lado". */
-export const GROUP_COLORS = ["azul", "laranja", "verde", "rosa"] as const;
+export const GROUP_COLORS = ["azul", "laranja"] as const;
 export type GroupColor = (typeof GROUP_COLORS)[number];
 
 /** How two tokens are joined on paper. None of them changes the timing. */

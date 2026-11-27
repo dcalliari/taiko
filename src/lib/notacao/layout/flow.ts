@@ -126,8 +126,6 @@ export const COLORS = {
 export const GROUP_FILL: Record<GroupColor, string> = {
 	azul: "#d9e2f3",
 	laranja: "#f7caac",
-	verde: "#e2efd9",
-	rosa: "#f8d7e8",
 };
 
 export type TextStyle = {

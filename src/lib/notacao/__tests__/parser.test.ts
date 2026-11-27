@@ -60,6 +60,12 @@ describe("parseSong: header", () => {
 		expect(parsed.sequence).toEqual([]);
 	});
 
+	it("reads swing as sim or não, with or without the accent", () => {
+		expect(parseSong("título: X\nsuingue: sim").swing).toBe(true);
+		expect(parseSong("título: X\nsuingue: não").swing).toBe(false);
+		expect(parseSong("título: X\nsuingue: nao").swing).toBe(false);
+	});
+
 	it("treats a free meter as no meter", () => {
 		expect(parseSong("título: X\ncompasso: livre").meter).toBeUndefined();
 	});
@@ -276,10 +282,30 @@ describe("parseSong: problems", () => {
 		["an unknown header line", "título: X\nqualquer coisa", "fora de seção"],
 		["a repeated key", "título: X\ntítulo: Y", "já foi informado"],
 		["an invalid meter", "título: X\ncompasso: valsa", "compasso inválido"],
+		[
+			"a swing that is not sim or não",
+			"título: X\nsuingue: com",
+			"suingue inválido",
+		],
+		[
+			"a swing written as a boolean",
+			"título: X\nsuingue: true",
+			"suingue inválido",
+		],
 		["an unknown instrument", "título: X\npartes: A (bumbo)", "desconhecido"],
 		["a tempo out of range", "título: X\nbpm: 900", "bpm deve ficar"],
 		["a phrase without number", "título: X\n[A]\nDON KON", "frase sem número"],
 		["an unknown group", "título: X\n[A]\n1 @roxo: DON", "desconhecido"],
+		[
+			"a group colour the sheet does not use",
+			"título: X\n[A]\n1 @verde: DON",
+			"desconhecido",
+		],
+		[
+			"a named group of an unused colour",
+			"título: X\ngrupos: rosa = Fundo",
+			"inválido",
+		],
 		["a leading hyphen", "título: X\n[A]\n1: -DON", "começar com hífen"],
 		["a trailing hyphen", "título: X\n[A]\n1: DON-", "hífen sobrando"],
 		["an open parenthesis", "título: X\n[A]\n1: DON (HA!", "não fechado"],

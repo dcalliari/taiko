@@ -208,6 +208,22 @@ describe("TaikoPlayer", () => {
 		expect(player.getSnapshot().loopStep).toBeNull();
 	});
 
+	it("keeps the loop where it is when seeking to a step with no duration", async () => {
+		const { player, advance, hits } = start(
+			"título: Teste\nbpm: 120\n[A]\n1: DON DON\n[B]\nsequência: A > B",
+		);
+		expect(player.getSnapshot().steps).toHaveLength(2);
+		player.setLoopStep(0);
+		await player.play();
+		advance(0.5);
+		player.seekToStep(1);
+		expect(player.getSnapshot().loopStep).toBe(0);
+		const before = hits.length;
+		advance(3);
+		expect(hits.length).toBeGreaterThanOrEqual(before + 4);
+		expect(player.getSnapshot()).toMatchObject({ status: "playing", step: 0 });
+	});
+
 	it("jumps to a step of the sequence", async () => {
 		const { player, advance, hits } = start(TWO_SECTIONS);
 		player.seekToStep(1);

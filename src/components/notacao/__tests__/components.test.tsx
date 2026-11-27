@@ -102,7 +102,6 @@ describe("TaikoPlayerControls", () => {
 		const html = render(ichigo);
 		expect(html).toContain("azul");
 		expect(html).toContain("laranja");
-		expect(html).not.toContain("verde");
 	});
 
 	it("offers mute and solo for each part of a layered song", () => {
@@ -111,6 +110,24 @@ describe("TaikoPlayerControls", () => {
 		expect(html).toContain('aria-label="Solo: Marcação"');
 		expect(html).toContain('aria-label="Solo: Música Base"');
 		expect(html).toContain("MÚSICA BASE + MARCAÇÃO (x4, 80 bpm)");
+	});
+
+	it("shows the tempo of the step being played, and the written one when stopped", () => {
+		const player = new TaikoPlayer(miyake);
+		const stopped = player.getSnapshot();
+		const at = (snapshot: typeof stopped) =>
+			renderToStaticMarkup(
+				<TaikoPlayerControls
+					song={miyake}
+					player={player}
+					snapshot={snapshot}
+				/>,
+			);
+		expect(at(stopped)).toContain("66 bpm");
+		const playing = { ...stopped, status: "playing" as const };
+		expect(at({ ...playing, step: 1 })).toContain("66 bpm");
+		expect(at({ ...playing, step: 2 })).toContain("80 bpm");
+		expect(at({ ...playing, step: 3, tempoScale: 0.5 })).toContain("48 bpm");
 	});
 
 	it("skips solo when there is a single part", () => {

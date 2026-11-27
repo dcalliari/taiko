@@ -294,8 +294,8 @@ function parseSwing(
 	fail: (message: string) => void,
 ): boolean | undefined {
 	const folded = fold(value);
-	if (["sim", "s", "true", "com"].includes(folded)) return true;
-	if (["nao", "n", "false", "sem"].includes(folded)) return false;
+	if (folded === "sim") return true;
+	if (folded === "nao") return false;
 	fail('suingue inválido (use "sim" ou "não")');
 	return undefined;
 }
