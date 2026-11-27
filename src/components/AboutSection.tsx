@@ -1,9 +1,11 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useRef } from "react";
-import { Trans, useTranslation } from "react-i18next";
 
 const AboutSection = () => {
-	const { t } = useTranslation();
+	const t = useTranslations("about");
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -18,23 +20,22 @@ const AboutSection = () => {
 					className="max-w-4xl mx-auto text-center"
 				>
 					<span className="inline-block text-primary font-heading font-semibold uppercase tracking-widest text-sm mb-4">
-						{t("about.label")}
+						{t("label")}
 					</span>
-					<h2 className="heading-section text-foreground mb-8">
-						{t("about.title")}
-					</h2>
+					<h2 className="heading-section text-foreground mb-8">{t("title")}</h2>
 
 					<div className="w-20 h-1 bg-primary mx-auto mb-8" />
 
 					<p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
-						<Trans
-							i18nKey="about.description1"
-							components={{ strong: <strong className="text-foreground" /> }}
-						/>
+						{t.rich("description1", {
+							strong: (chunks) => (
+								<strong className="text-foreground">{chunks}</strong>
+							),
+						})}
 					</p>
 
 					<p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-						{t("about.description2")}
+						{t("description2")}
 					</p>
 
 					<motion.a
@@ -44,7 +45,7 @@ const AboutSection = () => {
 						transition={{ delay: 0.5, duration: 0.5 }}
 						className="inline-flex items-center gap-2 text-primary font-heading font-semibold uppercase tracking-wider text-sm hover:gap-4 transition-all"
 					>
-						{t("about.historyLink")}
+						{t("historyLink")}
 						<span className="text-xl">→</span>
 					</motion.a>
 				</motion.div>

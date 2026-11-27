@@ -1,37 +1,39 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useRef } from "react";
-import { useTranslation } from "react-i18next";
 
 const HistorySection = () => {
-	const { t } = useTranslation();
+	const t = useTranslations("history");
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 
 	const timelineItems = [
 		{
-			year: t("history.timeline.item1.year"),
-			title: t("history.timeline.item1.title"),
-			description: t("history.timeline.item1.description"),
+			year: t("timeline.item1.year"),
+			title: t("timeline.item1.title"),
+			description: t("timeline.item1.description"),
 		},
 		{
-			year: t("history.timeline.item2.year"),
-			title: t("history.timeline.item2.title"),
-			description: t("history.timeline.item2.description"),
+			year: t("timeline.item2.year"),
+			title: t("timeline.item2.title"),
+			description: t("timeline.item2.description"),
 		},
 		{
-			year: t("history.timeline.item3.year"),
-			title: t("history.timeline.item3.title"),
-			description: t("history.timeline.item3.description"),
+			year: t("timeline.item3.year"),
+			title: t("timeline.item3.title"),
+			description: t("timeline.item3.description"),
 		},
 		{
-			year: t("history.timeline.item4.year"),
-			title: t("history.timeline.item4.title"),
-			description: t("history.timeline.item4.description"),
+			year: t("timeline.item4.year"),
+			title: t("timeline.item4.title"),
+			description: t("timeline.item4.description"),
 		},
 		{
-			year: t("history.timeline.item5.year"),
-			title: t("history.timeline.item5.title"),
-			description: t("history.timeline.item5.description"),
+			year: t("timeline.item5.year"),
+			title: t("timeline.item5.title"),
+			description: t("timeline.item5.description"),
 		},
 	];
 
@@ -46,14 +48,12 @@ const HistorySection = () => {
 					className="text-center mb-16"
 				>
 					<span className="inline-block text-primary font-heading font-semibold uppercase tracking-widest text-sm mb-4">
-						{t("history.label")}
+						{t("label")}
 					</span>
-					<h2 className="heading-section text-foreground mb-8">
-						{t("history.title")}
-					</h2>
+					<h2 className="heading-section text-foreground mb-8">{t("title")}</h2>
 					<div className="w-20 h-1 bg-primary mx-auto mb-8" />
 					<p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-						{t("history.description")}
+						{t("description")}
 					</p>
 				</motion.div>
 

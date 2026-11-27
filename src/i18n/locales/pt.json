@@ -1,4 +1,18 @@
 {
+	"meta": {
+		"siteName": "Kodon Amazon Taiko",
+		"title": "Kodon Amazon Taiko | A Força do Tambor na Amazônia",
+		"description": "Kodon Amazon Taiko - Grupo de taiko que une a tradição milenar japonesa com a energia vibrante da Amazônia. Apresentações, workshops e eventos culturais em Belém.",
+		"keywords": "taiko, tambor japonês, música, Amazônia, cultura japonesa, Belém, workshop, apresentação, kumi-daiko"
+	},
+	"a11y": {
+		"skipToContent": "Pular para o conteúdo",
+		"mainNav": "Navegação principal",
+		"openMenu": "Abrir menu",
+		"closeMenu": "Fechar menu",
+		"language": "Idioma",
+		"close": "Fechar"
+	},
 	"header": {
 		"title1": "KODON",
 		"title2": "AMAZON",
@@ -29,7 +43,8 @@
 			"title": "TRADIÇÃO E ENERGIA",
 			"subtitle": "O Ritmo que Move Corações",
 			"cta": "NOSSA HISTÓRIA"
-		}
+		},
+		"scroll": "Role"
 	},
 	"about": {
 		"label": "Nossa Essência",
@@ -316,7 +331,13 @@
 		"total": "Total:",
 		"checkout": "Finalizar Compra",
 		"checkoutDisclaimer": "Esta é uma loja demonstrativa. Nenhuma compra real será processada.",
-		"disclaimer": "⚠️ Esta é uma loja demonstrativa para fins de apresentação. Os produtos e preços são fictícios e nenhuma transação real será realizada."
+		"disclaimer": "⚠️ Esta é uma loja demonstrativa para fins de apresentação. Os produtos e preços são fictícios e nenhuma transação real será realizada.",
+		"oneSize": "Único",
+		"openCart": "Abrir carrinho",
+		"closeCart": "Fechar carrinho",
+		"increase": "Aumentar quantidade",
+		"decrease": "Diminuir quantidade",
+		"remove": "Remover do carrinho"
 	},
 	"terms": {
 		"title": "Termos de Uso",
@@ -371,5 +392,15 @@
 				"content": "Para dúvidas sobre estes Termos de Uso, entre em contato conosco:"
 			}
 		}
+	},
+	"notFound": {
+		"title": "Página não encontrada",
+		"description": "A página que você procura não existe ou foi movida.",
+		"backHome": "Voltar ao Início"
+	},
+	"error": {
+		"title": "Algo deu errado",
+		"description": "Não foi possível carregar esta página.",
+		"retry": "Tentar novamente"
 	}
 }

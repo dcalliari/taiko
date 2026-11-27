@@ -1,24 +1,33 @@
-# Logs
-logs
+# dependências
+/node_modules
+
+# Next.js
+/.next
+/out
+next-env.d.ts
+*.tsbuildinfo
+
+# variáveis de ambiente (apenas o exemplo é versionado)
+.env
+.env.*
+!.env.example
+
+# testes
+/coverage
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache
+
+# logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# sistema e editores
+.DS_Store
+.idea
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
 *.sw?
+
+# Vercel
+.vercel

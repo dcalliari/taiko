@@ -1,6 +1,4 @@
 /** biome-ignore-all lint/suspicious/noUnknownAtRules: it only works like that */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,6 +22,14 @@
 		/* Amazon Green - Secondary accent */
 		--secondary: 168 100% 21%;
 		--secondary-foreground: 0 0% 100%;
+
+		/*
+		 * As cores da marca não atingem 4.5:1 como texto sobre as superfícies
+		 * escuras (WCAG AA). text-primary e text-secondary usam estes tons mais
+		 * claros do mesmo matiz; fundos e bordas seguem com a cor original.
+		 */
+		--primary-text: 352 73% 60%;
+		--secondary-text: 168 100% 30%;
 
 		/* Deep Black surfaces */
 		--muted: 0 0% 7%;
@@ -49,9 +55,9 @@
 		--kodon-text: 0 0% 20%;
 		--kodon-text-light: 0 0% 60%;
 
-		/* Typography */
-		--font-heading: "Montserrat", sans-serif;
-		--font-body: "Inter", sans-serif;
+		/* Typography (fontes carregadas com next/font em src/app/[locale]/layout.tsx) */
+		--font-heading: var(--font-montserrat), sans-serif;
+		--font-body: var(--font-inter), sans-serif;
 
 		/* Gradients */
 		--gradient-hero: linear-gradient(
@@ -109,8 +115,15 @@
 		@apply border-border;
 	}
 
-	html {
-		scroll-behavior: smooth;
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+	}
+
+	:focus-visible {
+		outline: 2px solid hsl(var(--foreground));
+		outline-offset: 2px;
 	}
 
 	body {
@@ -150,6 +163,10 @@
 
 	.text-balance {
 		text-wrap: balance;
+	}
+
+	.skip-link {
+		@apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-background focus:px-4 focus:py-2 focus:text-foreground;
 	}
 
 	.gradient-text {

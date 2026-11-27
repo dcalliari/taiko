@@ -1,13 +1,9 @@
 import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
-	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
-	],
+	content: ["./src/**/*.{ts,tsx}"],
 	prefix: "",
 	theme: {
 		container: {
@@ -19,8 +15,19 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				heading: ["Montserrat", "sans-serif"],
-				body: ["Inter", "sans-serif"],
+				heading: ["var(--font-montserrat)", "sans-serif"],
+				body: ["var(--font-inter)", "sans-serif"],
+			},
+			// Tons com contraste AA para texto (ver --primary-text em globals.css).
+			textColor: {
+				primary: {
+					DEFAULT: "hsl(var(--primary-text))",
+					foreground: "hsl(var(--primary-foreground))",
+				},
+				secondary: {
+					DEFAULT: "hsl(var(--secondary-text))",
+					foreground: "hsl(var(--secondary-foreground))",
+				},
 			},
 			colors: {
 				border: "hsl(var(--border))",
@@ -152,5 +159,5 @@ export default {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [animate],
 } satisfies Config;
