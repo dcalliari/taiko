@@ -123,11 +123,13 @@ describe("TaikoPlayerControls", () => {
 					snapshot={snapshot}
 				/>,
 			);
-		expect(at(stopped)).toContain("66 bpm");
+		expect(at(stopped)).toContain(">66 bpm</output>");
 		const playing = { ...stopped, status: "playing" as const };
-		expect(at({ ...playing, step: 1 })).toContain("66 bpm");
-		expect(at({ ...playing, step: 2 })).toContain("80 bpm");
-		expect(at({ ...playing, step: 3, tempoScale: 0.5 })).toContain("48 bpm");
+		expect(at({ ...playing, step: 1 })).toContain(">66 bpm</output>");
+		expect(at({ ...playing, step: 2 })).toContain(">80 bpm</output>");
+		expect(at({ ...playing, step: 3, tempoScale: 0.5 })).toContain(
+			">48 bpm</output>",
+		);
 	});
 
 	it("skips solo when there is a single part", () => {

@@ -414,6 +414,12 @@ export class TaikoPlayer {
 			if (this.position < region.start || this.position >= region.end) {
 				this.position = region.start;
 			}
+			if (this.snapshot.status === "paused") {
+				this.update({
+					activeKeys: this.activeAt(this.position),
+					step: this.stepAt(this.position),
+				});
+			}
 			return;
 		}
 		const virtual = this.virtualNow(audio);

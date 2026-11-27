@@ -320,6 +320,27 @@ describe("TaikoPlayer", () => {
 		expect(new Set(times()).size).toBe(6);
 	});
 
+	it("moves the cursor and the step when seeking while paused", async () => {
+		const { player, advance } = start(TWO_SECTIONS);
+		await player.play();
+		advance(1.7);
+		player.pause();
+		expect(player.getSnapshot()).toMatchObject({ status: "paused", step: 1 });
+		player.seekToStep(0);
+		expect(player.getSnapshot()).toMatchObject({
+			status: "paused",
+			step: 0,
+			activeKeys: ["0.0.0.0.0"],
+		});
+		player.stop();
+		player.seekToStep(1);
+		expect(player.getSnapshot()).toMatchObject({
+			status: "stopped",
+			step: -1,
+			activeKeys: [],
+		});
+	});
+
 	it("toggles between playing and paused", async () => {
 		const { player, advance } = start(TWO_SECTIONS);
 		player.toggle();
