@@ -526,8 +526,8 @@ export function EditorDeFicha({ inicial }: { inicial: string }) {
 			<textarea value={texto} onChange={(e) => setTexto(e.target.value)} />
 			{!resultado.ok && (
 				<ul>
-					{resultado.issues.map((problema) => (
-						<li key={`${problema.line}:${problema.column}`}>
+					{resultado.issues.map((problema, indice) => (
+						<li key={`${indice}:${problema.line}:${problema.column}`}>
 							linha {problema.line}: {problema.message}
 						</li>
 					))}
