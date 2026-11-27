@@ -1,0 +1,21 @@
+# Postgres para desenvolvimento local. Sem senha (trust) e publicado apenas em
+# 127.0.0.1: não use esta configuração fora da sua máquina.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: taiko
+      POSTGRES_DB: taiko
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taiko -d taiko"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  db-data:

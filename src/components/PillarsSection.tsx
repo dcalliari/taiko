@@ -1,33 +1,35 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
 import { GraduationCap, Lightbulb, Music } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useRef } from "react";
-import { useTranslation } from "react-i18next";
 
 const PillarsSection = () => {
-	const { t } = useTranslation();
+	const t = useTranslations("pillars");
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 
 	const pillars = [
 		{
 			icon: Lightbulb,
-			title: t("pillars.create.title"),
-			description: t("pillars.create.description"),
-			link: { label: t("pillars.create.link"), href: "#projetos" },
+			title: t("create.title"),
+			description: t("create.description"),
+			link: { label: t("create.link"), href: "#projetos" },
 			color: "primary",
 		},
 		{
 			icon: GraduationCap,
-			title: t("pillars.teach.title"),
-			description: t("pillars.teach.description"),
-			link: { label: t("pillars.teach.link"), href: "#agenda" },
+			title: t("teach.title"),
+			description: t("teach.description"),
+			link: { label: t("teach.link"), href: "#agenda" },
 			color: "secondary",
 		},
 		{
 			icon: Music,
-			title: t("pillars.play.title"),
-			description: t("pillars.play.description"),
-			link: { label: t("pillars.play.link"), href: "#galeria" },
+			title: t("play.title"),
+			description: t("play.description"),
+			link: { label: t("play.link"), href: "#galeria" },
 			color: "primary",
 		},
 	];
@@ -54,7 +56,7 @@ const PillarsSection = () => {
 										: "bg-secondary/20 text-secondary"
 								}`}
 							>
-								<pillar.icon className="w-10 h-10" />
+								<pillar.icon className="w-10 h-10" aria-hidden="true" />
 							</div>
 
 							<h3 className="heading-section text-primary-foreground mb-4 text-xl md:text-2xl">

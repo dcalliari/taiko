@@ -1,19 +1,25 @@
+"use client";
+
 import {
 	AnimatePresence,
 	motion,
+	useReducedMotion,
 	useScroll,
 	useTransform,
 } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import heroDrums from "@/assets/hero-drums.jpg";
 import heroPerformance from "@/assets/hero-performance.jpg";
 import heroTaiko from "@/assets/hero-taiko.jpg";
 
 const HeroCarousel = () => {
-	const { t } = useTranslation();
+	const t = useTranslations("hero");
 	const [currentSlide, setCurrentSlide] = useState(0);
+	const [hasFocusWithin, setHasFocusWithin] = useState(false);
+	const prefersReducedMotion = useReducedMotion();
 	const heroRef = useRef<HTMLElement>(null);
 
 	const { scrollY } = useScroll();
@@ -28,6 +34,8 @@ const HeroCarousel = () => {
 	const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 	const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 	const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.6, 0.9]);
+	const decorationTopY = useTransform(scrollY, [0, 500], [0, 100]);
+	const decorationBottomY = useTransform(scrollY, [0, 500], [0, 150]);
 
 	// Slide duration in seconds
 	const SLIDE_DURATION = 6;
@@ -35,36 +43,55 @@ const HeroCarousel = () => {
 	const slides = [
 		{
 			image: heroTaiko,
-			title: t("hero.slide1.title"),
-			subtitle: t("hero.slide1.subtitle"),
-			cta: { label: t("hero.slide1.cta"), href: "#quem-somos" },
+			title: t("slide1.title"),
+			subtitle: t("slide1.subtitle"),
+			cta: { label: t("slide1.cta"), href: "#quem-somos" },
 			zoomOrigin: "bottom",
 		},
 		{
 			image: heroDrums,
-			title: t("hero.slide2.title"),
-			subtitle: t("hero.slide2.subtitle"),
-			cta: { label: t("hero.slide2.cta"), href: "#galeria" },
+			title: t("slide2.title"),
+			subtitle: t("slide2.subtitle"),
+			cta: { label: t("slide2.cta"), href: "#galeria" },
 			zoomOrigin: "top right",
 		},
 		{
 			image: heroPerformance,
-			title: t("hero.slide3.title"),
-			subtitle: t("hero.slide3.subtitle"),
-			cta: { label: t("hero.slide3.cta"), href: "#historia" },
+			title: t("slide3.title"),
+			subtitle: t("slide3.subtitle"),
+			cta: { label: t("slide3.cta"), href: "#historia" },
 			zoomOrigin: "top left",
 		},
 	];
 
+	const slide = slides[currentSlide];
+
+	// A troca automática para enquanto o teclado está dentro do carrossel e
+	// não acontece para quem pede movimento reduzido.
+	const isAutoplayPaused = hasFocusWithin || prefersReducedMotion;
+
 	useEffect(() => {
+		if (isAutoplayPaused) {
+			return;
+		}
 		const interval = setInterval(() => {
 			setCurrentSlide((prev) => (prev + 1) % slides.length);
 		}, SLIDE_DURATION * 1000);
 		return () => clearInterval(interval);
-	}, [slides.length]);
+	}, [slides.length, isAutoplayPaused]);
 
 	return (
-		<section ref={heroRef} className="relative h-screen w-full overflow-hidden">
+		// biome-ignore lint/a11y/noStaticElementInteractions: só observa o foco dos links internos para pausar a troca automática
+		<section
+			ref={heroRef}
+			className="relative h-screen w-full overflow-hidden"
+			onFocus={() => setHasFocusWithin(true)}
+			onBlur={(e) => {
+				if (!e.currentTarget.contains(e.relatedTarget)) {
+					setHasFocusWithin(false);
+				}
+			}}
+		>
 			{/* Parallax Background Layer */}
 			<motion.div
 				className="absolute inset-0 w-full h-[120%] -top-[10%]"
@@ -83,18 +110,24 @@ const HeroCarousel = () => {
 						className="absolute inset-0"
 					>
 						<motion.div
-							className="absolute inset-0 bg-cover bg-center"
-							style={{
-								backgroundImage: `url(${slides[currentSlide].image})`,
-								transformOrigin: slides[currentSlide].zoomOrigin,
-							}}
+							className="absolute inset-0"
+							style={{ transformOrigin: slide.zoomOrigin }}
 							initial={{ scale: 1 }}
 							animate={{ scale: 1.1 }}
 							transition={{
 								duration: SLIDE_DURATION,
 								ease: "linear",
 							}}
-						/>
+						>
+							<Image
+								src={slide.image}
+								alt=""
+								fill
+								priority={currentSlide === 0}
+								sizes="100vw"
+								className="object-cover object-center"
+							/>
+						</motion.div>
 					</motion.div>
 				</AnimatePresence>
 			</motion.div>
@@ -109,15 +142,11 @@ const HeroCarousel = () => {
 			{/* Floating Decorative Elements with Parallax */}
 			<motion.div
 				className="absolute top-20 right-20 w-64 h-64 rounded-full bg-primary/10 blur-3xl"
-				style={{
-					y: useTransform(scrollY, [0, 500], [0, 100]),
-				}}
+				style={{ y: decorationTopY }}
 			/>
 			<motion.div
 				className="absolute bottom-40 left-10 w-48 h-48 rounded-full bg-primary/5 blur-2xl"
-				style={{
-					y: useTransform(scrollY, [0, 500], [0, 150]),
-				}}
+				style={{ y: decorationBottomY }}
 			/>
 
 			{/* Content with Parallax */}
@@ -152,7 +181,7 @@ const HeroCarousel = () => {
 								transition={{ duration: 0.6, delay: 0.4 }}
 								className="block"
 							>
-								{slides[currentSlide].title}
+								{slide.title}
 							</motion.span>
 						</h1>
 
@@ -162,19 +191,20 @@ const HeroCarousel = () => {
 							transition={{ duration: 0.6, delay: 0.6 }}
 							className="text-xl md:text-2xl text-muted-foreground mb-10 font-body max-w-2xl"
 						>
-							{slides[currentSlide].subtitle}
+							{slide.subtitle}
 						</motion.p>
 
 						<motion.a
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.8 }}
-							href={slides[currentSlide].cta.href}
+							href={slide.cta.href}
 							className="group inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-heading font-bold uppercase tracking-wider text-sm hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
 						>
-							{slides[currentSlide].cta.label}
+							{slide.cta.label}
 							<motion.span
 								className="inline-block"
+								aria-hidden="true"
 								animate={{ x: [0, 5, 0] }}
 								transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
 							>
@@ -194,14 +224,14 @@ const HeroCarousel = () => {
 				style={{ opacity: contentOpacity }}
 			>
 				<span className="text-xs uppercase tracking-widest mb-3 text-muted-foreground">
-					Role
+					{t("scroll")}
 				</span>
 				<motion.div
 					animate={{ y: [0, 8, 0] }}
 					transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
 					className="p-2 border border-primary/30 rounded-full"
 				>
-					<ChevronDown className="w-5 h-5 text-primary" />
+					<ChevronDown className="w-5 h-5 text-primary" aria-hidden="true" />
 				</motion.div>
 			</motion.div>
 

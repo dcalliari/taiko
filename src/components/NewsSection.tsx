@@ -1,10 +1,13 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Calendar, Mail } from "lucide-react";
-import { useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslations } from "next-intl";
+import { type FormEvent, useRef, useState } from "react";
+import { toast } from "sonner";
 
 const NewsSection = () => {
-	const { t } = useTranslation();
+	const t = useTranslations("news");
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 	const [email, setEmail] = useState("");
@@ -12,42 +15,42 @@ const NewsSection = () => {
 	const news = [
 		{
 			id: 1,
-			title: t("news.news1.title"),
-			date: t("news.news1.date"),
-			excerpt: t("news.news1.excerpt"),
+			title: t("news1.title"),
+			date: t("news1.date"),
+			excerpt: t("news1.excerpt"),
 		},
 		{
 			id: 2,
-			title: t("news.news2.title"),
-			date: t("news.news2.date"),
-			excerpt: t("news.news2.excerpt"),
+			title: t("news2.title"),
+			date: t("news2.date"),
+			excerpt: t("news2.excerpt"),
 		},
 		{
 			id: 3,
-			title: t("news.news3.title"),
-			date: t("news.news3.date"),
-			excerpt: t("news.news3.excerpt"),
+			title: t("news3.title"),
+			date: t("news3.date"),
+			excerpt: t("news3.excerpt"),
 		},
 	];
 
 	const events = [
 		{
 			id: 1,
-			title: t("news.event1.title"),
-			date: t("news.event1.date"),
-			location: t("news.event1.location"),
+			title: t("event1.title"),
+			date: t("event1.date"),
+			location: t("event1.location"),
 		},
 		{
 			id: 2,
-			title: t("news.event2.title"),
-			date: t("news.event2.date"),
-			location: t("news.event2.location"),
+			title: t("event2.title"),
+			date: t("event2.date"),
+			location: t("event2.location"),
 		},
 	];
 
-	const handleSubscribe = (e: React.FormEvent) => {
+	const handleSubscribe = (e: FormEvent) => {
 		e.preventDefault();
-		alert(t("news.subscribeSuccess"));
+		toast.success(t("subscribeSuccess"));
 		setEmail("");
 	};
 
@@ -60,9 +63,9 @@ const NewsSection = () => {
 						href="#contato"
 						className="flex items-center justify-center gap-3 text-primary-foreground font-heading font-bold uppercase tracking-wider hover:gap-5 transition-all"
 					>
-						<Mail className="w-5 h-5" />
-						{t("news.contactUs")}
-						<ArrowRight className="w-5 h-5" />
+						<Mail className="w-5 h-5" aria-hidden="true" />
+						{t("contactUs")}
+						<ArrowRight className="w-5 h-5" aria-hidden="true" />
 					</a>
 				</div>
 			</div>
@@ -76,10 +79,10 @@ const NewsSection = () => {
 						transition={{ duration: 0.6 }}
 					>
 						<span className="inline-block text-primary font-heading font-semibold uppercase tracking-widest text-sm mb-4">
-							{t("news.label")}
+							{t("label")}
 						</span>
 						<h2 className="heading-section text-primary-foreground mb-8">
-							{t("news.title")}
+							{t("title")}
 						</h2>
 
 						<div className="space-y-6">
@@ -106,8 +109,8 @@ const NewsSection = () => {
 							href="#noticias"
 							className="inline-flex items-center gap-2 text-primary font-heading font-semibold uppercase tracking-wider text-sm mt-8 hover:gap-4 transition-all"
 						>
-							{t("news.allPosts")}
-							<ArrowRight className="w-4 h-4" />
+							{t("allPosts")}
+							<ArrowRight className="w-4 h-4" aria-hidden="true" />
 						</a>
 					</motion.div>
 
@@ -118,10 +121,10 @@ const NewsSection = () => {
 						transition={{ duration: 0.6, delay: 0.2 }}
 					>
 						<span className="inline-block text-secondary font-heading font-semibold uppercase tracking-widest text-sm mb-4">
-							{t("news.eventsLabel")}
+							{t("eventsLabel")}
 						</span>
 						<h2 className="heading-section text-primary-foreground mb-8">
-							{t("news.eventsTitle")}
+							{t("eventsTitle")}
 						</h2>
 
 						<div className="space-y-4 mb-8">
@@ -136,7 +139,7 @@ const NewsSection = () => {
 									>
 										<div className="flex items-start gap-4">
 											<div className="flex-shrink-0 w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center text-secondary">
-												<Calendar className="w-5 h-5" />
+												<Calendar className="w-5 h-5" aria-hidden="true" />
 											</div>
 											<div>
 												<h4 className="font-heading font-bold text-primary-foreground group-hover:text-secondary transition-colors">
@@ -150,9 +153,7 @@ const NewsSection = () => {
 									</motion.div>
 								))
 							) : (
-								<p className="text-muted-foreground italic">
-									{t("news.noEvents")}
-								</p>
+								<p className="text-muted-foreground italic">{t("noEvents")}</p>
 							)}
 						</div>
 
@@ -160,24 +161,27 @@ const NewsSection = () => {
 							href="#calendario"
 							className="inline-flex items-center gap-2 text-secondary font-heading font-semibold uppercase tracking-wider text-sm hover:gap-4 transition-all"
 						>
-							{t("news.calendarComplete")}
-							<ArrowRight className="w-4 h-4" />
+							{t("calendarComplete")}
+							<ArrowRight className="w-4 h-4" aria-hidden="true" />
 						</a>
 
 						{/* Newsletter */}
 						<div className="mt-12 p-6 bg-background rounded-lg border border-border">
 							<h3 className="font-heading font-bold text-primary-foreground text-lg mb-2">
-								{t("news.newsletterTitle")}
+								{t("newsletterTitle")}
 							</h3>
 							<p className="text-sm text-muted-foreground mb-4">
-								{t("news.newsletterDescription")}
+								{t("newsletterDescription")}
 							</p>
 							<form onSubmit={handleSubscribe} className="flex gap-2">
 								<input
 									type="email"
+									name="email"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
-									placeholder={t("news.emailPlaceholder")}
+									placeholder={t("emailPlaceholder")}
+									aria-label={t("emailPlaceholder")}
+									autoComplete="email"
 									required
 									className="flex-1 px-4 py-2 bg-muted border border-border rounded text-primary-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
 								/>
@@ -185,7 +189,7 @@ const NewsSection = () => {
 									type="submit"
 									className="px-6 py-2 bg-primary text-primary-foreground font-heading font-semibold uppercase text-sm hover:bg-primary/90 transition-colors rounded"
 								>
-									{t("news.subscribe")}
+									{t("subscribe")}
 								</button>
 							</form>
 						</div>

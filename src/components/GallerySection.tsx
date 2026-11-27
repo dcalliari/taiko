@@ -1,66 +1,69 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
 import { Play } from "lucide-react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import heroDrums from "@/assets/hero-drums.jpg";
 import heroPerformance from "@/assets/hero-performance.jpg";
 import heroTaiko from "@/assets/hero-taiko.jpg";
 
 const GallerySection = () => {
-	const { t } = useTranslation();
+	const t = useTranslations("gallery");
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 	const [activeFilter, setActiveFilter] = useState("all");
 
 	const filters = [
-		{ id: "all", label: t("gallery.filters.all") },
-		{ id: "concerts", label: t("gallery.filters.concerts") },
-		{ id: "festivals", label: t("gallery.filters.festivals") },
-		{ id: "collaborations", label: t("gallery.filters.collaborations") },
-		{ id: "workshops", label: t("gallery.filters.workshops") },
-		{ id: "videos", label: t("gallery.filters.videos") },
+		{ id: "all", label: t("filters.all") },
+		{ id: "concerts", label: t("filters.concerts") },
+		{ id: "festivals", label: t("filters.festivals") },
+		{ id: "collaborations", label: t("filters.collaborations") },
+		{ id: "workshops", label: t("filters.workshops") },
+		{ id: "videos", label: t("filters.videos") },
 	];
 
 	const galleryItems = [
 		{
 			id: 1,
 			image: heroTaiko,
-			title: t("gallery.items.item1"),
+			title: t("items.item1"),
 			category: "concerts",
 			isVideo: false,
 		},
 		{
 			id: 2,
 			image: heroDrums,
-			title: t("gallery.items.item2"),
+			title: t("items.item2"),
 			category: "festivals",
 			isVideo: false,
 		},
 		{
 			id: 3,
 			image: heroPerformance,
-			title: t("gallery.items.item3"),
+			title: t("items.item3"),
 			category: "workshops",
 			isVideo: false,
 		},
 		{
 			id: 4,
 			image: heroTaiko,
-			title: t("gallery.items.item4"),
+			title: t("items.item4"),
 			category: "festivals",
 			isVideo: true,
 		},
 		{
 			id: 5,
 			image: heroDrums,
-			title: t("gallery.items.item5"),
+			title: t("items.item5"),
 			category: "collaborations",
 			isVideo: false,
 		},
 		{
 			id: 6,
 			image: heroPerformance,
-			title: t("gallery.items.item6"),
+			title: t("items.item6"),
 			category: "concerts",
 			isVideo: false,
 		},
@@ -82,11 +85,9 @@ const GallerySection = () => {
 					className="text-center mb-12"
 				>
 					<span className="inline-block text-primary font-heading font-semibold uppercase tracking-widest text-sm mb-4">
-						{t("gallery.label")}
+						{t("label")}
 					</span>
-					<h2 className="heading-section text-foreground mb-8">
-						{t("gallery.title")}
-					</h2>
+					<h2 className="heading-section text-foreground mb-8">{t("title")}</h2>
 					<div className="w-20 h-1 bg-primary mx-auto" />
 				</motion.div>
 
@@ -102,6 +103,7 @@ const GallerySection = () => {
 							type="button"
 							key={filter.id}
 							onClick={() => setActiveFilter(filter.id)}
+							aria-pressed={activeFilter === filter.id}
 							className={`px-4 py-2 font-heading text-sm uppercase tracking-wider transition-all duration-300 rounded ${
 								activeFilter === filter.id
 									? "bg-primary text-primary-foreground"
@@ -130,17 +132,19 @@ const GallerySection = () => {
 							transition={{ duration: 0.4, delay: index * 0.1 }}
 							className="group relative aspect-[4/3] overflow-hidden rounded-lg cursor-pointer"
 						>
-							<img
+							<Image
 								src={item.image}
 								alt={item.title}
-								className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+								fill
+								sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+								className="object-cover transition-transform duration-500 group-hover:scale-110"
 							/>
 							<div className="absolute inset-0 bg-gradient-to-t from-muted via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
 							{item.isVideo && (
 								<div className="absolute inset-0 flex items-center justify-center">
 									<div className="w-16 h-16 bg-primary/80 rounded-full flex items-center justify-center text-primary-foreground opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
-										<Play className="w-6 h-6 ml-1" />
+										<Play className="w-6 h-6 ml-1" aria-hidden="true" />
 									</div>
 								</div>
 							)}
@@ -165,7 +169,7 @@ const GallerySection = () => {
 						href="#portfolio"
 						className="inline-block px-8 py-4 bg-primary text-primary-foreground font-heading font-bold uppercase tracking-wider text-sm hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
 					>
-						{t("gallery.viewPortfolio")}
+						{t("viewPortfolio")}
 					</a>
 				</motion.div>
 			</div>
