@@ -34,7 +34,8 @@ parte: Marcação
 
 [MÚSICA BASE]
 # Tsukudon: "tsuku" é falado para contar, o braço arma o golpe; só o DON soa.
-# incerto: há grupos que tocam o "tsuku" de leve em vez de só falar.
+# incerto: o kuchi shōga da ilha escreve o "tsuku" sem parênteses; pode ser
+# que ele seja tocado de leve em vez de só falado.
 1 (x2): (tsuku) DON (tsuku) DON (tsuku) DON DON
 # "do-DON ko DON DON": o "ko" cai no contratempo do segundo tempo.
 # incerto: a força do "do" e do "ko" (escritos fracos aqui).
