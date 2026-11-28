@@ -177,6 +177,57 @@ describe("layoutSheet: the Kodon sheet", () => {
 		expect(rows.size).toBeGreaterThan(1);
 	});
 
+	const rowTexts = (line: string) => {
+		const wrapped = layoutSheet(parseSong(`título: X\n[A]\n1: ${line}`));
+		const row = items(wrapped).find(
+			(item) => item.type === "rect" && item.stroke !== undefined,
+		);
+		if (row?.type !== "rect") throw new Error("no phrase row");
+		const inRow = texts(wrapped).filter(
+			(item) =>
+				item.y > row.y && item.y < row.y + row.height && item.text !== "1",
+		);
+		return { inRow, right: row.x + row.width };
+	};
+
+	it("carries the last word down with a repeat that does not fit", () => {
+		const { inRow, right } = rowTexts(
+			`${Array.from({ length: 8 }, () => "DONKON").join(" ")} (X4 CRESCENTE)`,
+		);
+		for (const item of inRow) {
+			expect(item.x + item.width).toBeLessThanOrEqual(right);
+		}
+		const lines = [...new Set(inRow.map((item) => item.y))].sort(
+			(a, b) => a - b,
+		);
+		expect(lines).toHaveLength(2);
+		const second = inRow
+			.filter((item) => item.y === lines[1])
+			.map((item) => item.text.trim())
+			.filter((text) => text !== "");
+		expect(second).toEqual(["DON", "KON", "(X4 CRESCENTE)"]);
+		expect(inRow.filter((item) => item.text === "DON")).toHaveLength(8);
+	});
+
+	it("breaks a hyphen chain wider than the row after a hyphen", () => {
+		const { inRow, right } = rowTexts(
+			Array.from({ length: 20 }, () => "DON-KON").join("-"),
+		);
+		for (const item of inRow) {
+			expect(item.x + item.width).toBeLessThanOrEqual(right);
+		}
+		const lines = [...new Set(inRow.map((item) => item.y))].sort(
+			(a, b) => a - b,
+		);
+		expect(lines.length).toBeGreaterThan(1);
+		const first = inRow.filter((item) => item.y === lines[0]);
+		expect(first[first.length - 1].text).toBe("-");
+		const strokes = inRow.filter((item) => item.text !== "-");
+		expect(strokes.map((item) => item.text)).toEqual(
+			Array.from({ length: 20 }, () => ["DON", "KON"]).flat(),
+		);
+	});
+
 	it("starts a new page rather than cutting a row in half", () => {
 		const tall = parseSong(
 			`título: X\n[A]\n${Array.from({ length: 60 }, (_, index) => `${index + 1}: DON`).join("\n")}`,

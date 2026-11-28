@@ -86,20 +86,49 @@ function wrapAtoms(atoms: Atom[], maxWidth: number, size: number): Run[][] {
 	const lines: Run[][] = [];
 	let current: Run[] = [];
 	let width = 0;
+	// The glue group: a word and the atoms glued to it, which wrap together.
+	let groupLead = "";
+	let groupLeadAt = 0;
+	let groupAt = 0;
 	for (const atom of atoms) {
 		const atomWidth = runsWidth(atom.runs, size);
-		const leadWidth = measureText(atom.lead, size);
-		const fits = width + leadWidth + atomWidth <= maxWidth;
-		if (!fits && current.length > 0 && !atom.glued) {
-			lines.push(current);
-			// A broken dash stays visible at the start of the next line.
-			const lead = atom.lead.trim();
-			current = lead === "" ? [] : [{ text: `${lead} ` }];
+		const fits = () =>
+			width + measureText(atom.lead, size) + atomWidth <= maxWidth;
+		let lead = atom.lead;
+		if (!fits() && atom.glued && groupLeadAt > 0) {
+			lines.push(current.slice(0, groupLeadAt));
+			const head = groupLead.trim();
+			current = [
+				...(head === "" ? [] : [{ text: `${head} ` }]),
+				...current.slice(groupAt),
+			];
 			width = runsWidth(current, size);
-		} else if (atom.lead !== "") {
-			current.push({ text: atom.lead });
-			width += leadWidth;
+			groupLeadAt = 0;
 		}
+		if (!fits() && current.length > 0) {
+			// A broken dash stays visible at the start of the next line.
+			const mark = atom.lead.trim();
+			lead = mark === "" ? "" : `${mark} `;
+			if (atom.glued) {
+				// A glue group wider than the row breaks after its hyphen.
+				const trails = width + measureText(mark, size) <= maxWidth;
+				if (trails && mark !== "") current.push({ text: mark });
+				lead = trails ? "" : mark;
+			}
+			lines.push(current);
+			current = [];
+			width = 0;
+			groupLeadAt = 0;
+		}
+		if (!atom.glued) {
+			groupLead = lead;
+			groupLeadAt = current.length;
+		}
+		if (lead !== "") {
+			current.push({ text: lead });
+			width += measureText(lead, size);
+		}
+		if (!atom.glued) groupAt = current.length;
 		current.push(...atom.runs);
 		width += atomWidth;
 	}
