@@ -78,6 +78,7 @@ src/
   db/                    conexão, schema e banco de teste
   i18n/                  rotas, navegação e textos (locales/pt.json, ja.json)
   lib/                   utilitários (seo, security/csp)
+    notacao/             motor das fichas de taiko (ver docs/notacao.md)
   env.ts                 variáveis de ambiente validadas
   proxy.ts               idioma da requisição e Content-Security-Policy
 drizzle/                 migrations geradas
