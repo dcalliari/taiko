@@ -4,12 +4,12 @@ Motor de notação do Grupo Kodon Amazon Taiko. O instrutor escreve a música em
 
 É uma biblioteca independente de framework: não usa roteador, não busca dados, não depende de Next nem de Vite. Autenticação, banco e gravação de fichas ficam fora dela.
 
-| Onde | O quê |
-| --- | --- |
-| `src/lib/notacao/` | modelo, parser, serializador, regra de duração, linha do tempo, layout, PDF e player |
-| `src/lib/notacao/musicas/` | ICHIGO e Miyake escritas no formato |
-| `src/components/notacao/` | componentes React: ficha em SVG, controles do player, tudo junto |
-| `src/**/__tests__/` | testes Vitest (`npm test`) |
+| Onde                       | O quê                                                                                |
+| -------------------------- | ------------------------------------------------------------------------------------ |
+| `src/lib/notacao/`         | modelo, parser, serializador, regra de duração, linha do tempo, layout, PDF e player |
+| `src/lib/notacao/musicas/` | ICHIGO e Miyake escritas no formato                                                  |
+| `src/components/notacao/`  | componentes React: ficha em SVG, controles do player, tudo junto                     |
+| `src/**/__tests__/`        | testes Vitest (`npm test`)                                                           |
 
 ## 1. Como os grupos de taiko escrevem as músicas
 
@@ -17,17 +17,17 @@ Motor de notação do Grupo Kodon Amazon Taiko. O instrutor escreve a música em
 
 O taiko se ensina cantando. Cada golpe tem uma sílaba, e quem sabe cantar a frase sabe tocar. Esse canto se chama kuchi shōga (口唱歌). Não existe vocabulário oficial: as sílabas vêm do silabário japonês e mudam de região para região e de grupo para grupo [1][3]. O núcleo, porém, é o mesmo em quase toda parte:
 
-| Sílaba | Golpe | Fonte |
-| --- | --- | --- |
-| don | batida cheia no centro do couro; vale um tempo | [1][2][3][5] |
-| do | batida curta no centro; metade do don | [1][2] |
-| doko, dogo, doro | duas batidas rápidas | [1][2][3] |
-| kon, ko | o mesmo que don e do, com a mão esquerda | [1][2] |
-| tsu | batida leve | [1][2][3][5] |
-| tsuku | duas batidas leves, direita e esquerda | [1][2][3] |
-| ka | batida seca na borda (fuchi) | [1][2][3][5] |
-| kara | duas batidas na borda, direita e esquerda | [1][2][3] |
-| su | pausa falada | [2][3][5] |
+| Sílaba           | Golpe                                          | Fonte        |
+| ---------------- | ---------------------------------------------- | ------------ |
+| don              | batida cheia no centro do couro; vale um tempo | [1][2][3][5] |
+| do               | batida curta no centro; metade do don          | [1][2]       |
+| doko, dogo, doro | duas batidas rápidas                           | [1][2][3]    |
+| kon, ko          | o mesmo que don e do, com a mão esquerda       | [1][2]       |
+| tsu              | batida leve                                    | [1][2][3][5] |
+| tsuku            | duas batidas leves, direita e esquerda         | [1][2][3]    |
+| ka               | batida seca na borda (fuchi)                   | [1][2][3][5] |
+| kara             | duas batidas na borda, direita e esquerda      | [1][2][3]    |
+| su               | pausa falada                                   | [2][3][5]    |
 
 A regra das mãos aparece escrita na Wikipedia: direita canta don, do, tsu, ka; esquerda canta kon, ko, ku, ra [1]. O dicionário do Tatsumaki Taiko mostra que cada instrumento tem o seu vocabulário: o taiko canta don e doko, o shime canta ten e teke, o atarigane canta chan e chiki [2].
 
@@ -55,12 +55,12 @@ A base se chama ji-uchi: o padrão que marca o tempo e sustenta a música [2][5]
 
 Procurei um editor de fichas de kuchi shōga, aberto ou não, e não achei nenhum. O que existe e chega perto:
 
-| Formato | O que é | Por que não serve como está |
-| --- | --- | --- |
-| TJA | texto dos simuladores de Taiko no Tatsujin (identificado por busca, não estudado a fundo) | é formato de jogo: um tambor só, notas "don" e "ka" numa trilha, sem frases nem mãos |
-| Tablatura de bateria em ASCII | uma linha por peça, um caractere por subdivisão | boa para grade, mas não é como a ficha do grupo é escrita |
-| TUBS (caixas por unidade de tempo) | a grade usada em percussão africana | é a mesma ideia da grade do item 2 acima |
-| ABC, LilyPond, MuseScore | notação ocidental em texto ou editor | exigem ler partitura, e a ficha do grupo é canto |
+| Formato                            | O que é                                                                                   | Por que não serve como está                                                          |
+| ---------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| TJA                                | texto dos simuladores de Taiko no Tatsujin (identificado por busca, não estudado a fundo) | é formato de jogo: um tambor só, notas "don" e "ka" numa trilha, sem frases nem mãos |
+| Tablatura de bateria em ASCII      | uma linha por peça, um caractere por subdivisão                                           | boa para grade, mas não é como a ficha do grupo é escrita                            |
+| TUBS (caixas por unidade de tempo) | a grade usada em percussão africana                                                       | é a mesma ideia da grade do item 2 acima                                             |
+| ABC, LilyPond, MuseScore           | notação ocidental em texto ou editor                                                      | exigem ler partitura, e a ficha do grupo é canto                                     |
 
 Tablatura, TUBS, ABC, LilyPond e MuseScore entram aqui por conhecimento geral: não foram pesquisados a fundo nesta tarefa.
 
@@ -131,17 +131,17 @@ sequência: VERSO A > VERSO B > VERSO A
 
 Uma linha `chave: valor` por informação, antes da primeira seção. As chaves aceitam maiúsculas e a falta de acento (`titulo`, `TÍTULO`).
 
-| Chave | Valor | Se faltar |
-| --- | --- | --- |
-| `título` | nome da música | erro: é obrigatório |
-| `composição` | quem compôs | não aparece |
-| `digitação` | quem escreveu a ficha | não aparece |
-| `bpm` | tempos por minuto, de 20 a 400 | 100 |
-| `compasso` | `4/4`, `6/8`... ou `livre` | livre |
-| `suingue` | `sim` ou `não` | não |
-| `partes` | `Nome (instrumento), Nome (instrumento)` | uma parte: `Taiko (nagado)` |
-| `grupos` | `azul = Lado direito, laranja = Lado esquerdo` | as cores funcionam sem nome |
-| `obs` | observação impressa no fim da ficha; pode repetir | nenhuma |
+| Chave        | Valor                                             | Se faltar                   |
+| ------------ | ------------------------------------------------- | --------------------------- |
+| `título`     | nome da música                                    | erro: é obrigatório         |
+| `composição` | quem compôs                                       | não aparece                 |
+| `digitação`  | quem escreveu a ficha                             | não aparece                 |
+| `bpm`        | tempos por minuto, de 20 a 400                    | 100                         |
+| `compasso`   | `4/4`, `6/8`... ou `livre`                        | livre                       |
+| `suingue`    | `sim` ou `não`                                    | não                         |
+| `partes`     | `Nome (instrumento), Nome (instrumento)`          | uma parte: `Taiko (nagado)` |
+| `grupos`     | `azul = Lado direito, laranja = Lado esquerdo`    | as cores funcionam sem nome |
+| `obs`        | observação impressa no fim da ficha; pode repetir | nenhuma                     |
 
 Um **tempo** é uma palavra escrita (seção 4). O `bpm` conta esses tempos.
 
@@ -172,45 +172,45 @@ O número é só para quem lê: a ficha numera pela posição, então inserir um
 
 ### O texto da frase
 
-| Escrita | Significado |
-| --- | --- |
-| `DON` | batida forte (maiúsculas) |
-| `do` | batida fraca (minúsculas) |
-| `DONKON`, `DONdo`, `tsuku` | sílabas coladas: dividem um tempo |
-| `>DON` | acento: sai sublinhado |
-| `>>DON` | acento mais forte: sublinhado e negrito |
-| `(HA!)` | kakegoe ou contagem: falado, não tocado; sai em itálico |
-| `>(SA-SA-SA-SA!)` | kakegoe em destaque: itálico e negrito |
-| `(X8)` no fim da linha | repete a linha 8 vezes |
-| `(X4 CRESCENTE)` | repete com uma indicação; CRESCENTE e DECRESCENTE mudam o volume na reprodução |
-| `obs: texto` | linha de explicação: sai entre parênteses, não é tocada nem falada |
+| Escrita                    | Significado                                                                    |
+| -------------------------- | ------------------------------------------------------------------------------ |
+| `DON`                      | batida forte (maiúsculas)                                                      |
+| `do`                       | batida fraca (minúsculas)                                                      |
+| `DONKON`, `DONdo`, `tsuku` | sílabas coladas: dividem um tempo                                              |
+| `>DON`                     | acento: sai sublinhado                                                         |
+| `>>DON`                    | acento mais forte: sublinhado e negrito                                        |
+| `(HA!)`                    | kakegoe ou contagem: falado, não tocado; sai em itálico                        |
+| `>(SA-SA-SA-SA!)`          | kakegoe em destaque: itálico e negrito                                         |
+| `(X8)` no fim da linha     | repete a linha 8 vezes                                                         |
+| `(X4 CRESCENTE)`           | repete com uma indicação; CRESCENTE e DECRESCENTE mudam o volume na reprodução |
+| `obs: texto`               | linha de explicação: sai entre parênteses, não é tocada nem falada             |
 
 Quatro formas de juntar palavras, todas preservadas como foram escritas e nenhuma mudando a duração:
 
-| Escrita | Exemplo |
-| --- | --- |
-| espaço | `DON KON` |
-| hífen colado | `DON-KON` |
+| Escrita               | Exemplo                                                         |
+| --------------------- | --------------------------------------------------------------- |
+| espaço                | `DON KON`                                                       |
+| hífen colado          | `DON-KON`                                                       |
 | travessão com espaços | `DON – KON` (um `-` entre espaços vira travessão, como no Word) |
-| hífen e espaço | `DON- KA` |
+| hífen e espaço        | `DON- KA`                                                       |
 
 As sílabas são separadas por regra, não por lista: consoantes, vogais e um "n" final opcional. `KONDON` é KON + DON, `tsuteteko` é tsu + te + te + ko. Por isso o vocabulário de qualquer grupo funciona. Uma sílaba que o motor não conhece gera um aviso e toca como batida no centro.
 
 ### Vocabulário reconhecido
 
-| Sílabas | Mão | Onde | Observação |
-| --- | --- | --- | --- |
-| don, do | direita | centro | |
-| kon, ko, go, ro | esquerda | centro | |
-| tsu, zu | direita | centro | leves mesmo em maiúsculas |
-| ku | esquerda | centro | leve mesmo em maiúsculas |
-| ka | direita | borda | |
-| ra, ta | esquerda | borda | |
-| ten, te | direita | centro | vocabulário do shime |
-| ke, re | esquerda | centro | vocabulário do shime |
-| chan | direita | centro | atarigane, batida aberta |
-| chi, ki | direita, esquerda | borda | atarigane, batida abafada |
-| su, un | | | pausa falada: aparece na ficha, não toca |
+| Sílabas         | Mão               | Onde   | Observação                               |
+| --------------- | ----------------- | ------ | ---------------------------------------- |
+| don, do         | direita           | centro |                                          |
+| kon, ko, go, ro | esquerda          | centro |                                          |
+| tsu, zu         | direita           | centro | leves mesmo em maiúsculas                |
+| ku              | esquerda          | centro | leve mesmo em maiúsculas                 |
+| ka              | direita           | borda  |                                          |
+| ra, ta          | esquerda          | borda  |                                          |
+| ten, te         | direita           | centro | vocabulário do shime                     |
+| ke, re          | esquerda          | centro | vocabulário do shime                     |
+| chan            | direita           | centro | atarigane, batida aberta                 |
+| chi, ki         | direita, esquerda | borda  | atarigane, batida abafada                |
+| su, un          |                   |        | pausa falada: aparece na ficha, não toca |
 
 A lista vive em `src/lib/notacao/syllables.ts`. Acrescentar uma sílaba é acrescentar uma linha ali.
 
@@ -218,12 +218,12 @@ A lista vive em `src/lib/notacao/syllables.ts`. Acrescentar uma sílaba é acres
 
 Duas marcas mudam a duração sem aparecer na ficha impressa. Elas aparecem na grade.
 
-| Escrita | Significado |
-| --- | --- |
-| `DON:2` | a palavra dura 2 tempos (aceita `2`, `1/2`, `0.5`, `3/4`) |
-| `(SORE!):2` | o kakegoe inteiro dura 2 tempos |
-| `_` | pausa silenciosa de um tempo |
-| `_ko` | pausa colada na palavra: meio tempo de silêncio, depois o ko |
+| Escrita     | Significado                                                  |
+| ----------- | ------------------------------------------------------------ |
+| `DON:2`     | a palavra dura 2 tempos (aceita `2`, `1/2`, `0.5`, `3/4`)    |
+| `(SORE!):2` | o kakegoe inteiro dura 2 tempos                              |
+| `_`         | pausa silenciosa de um tempo                                 |
+| `_ko`       | pausa colada na palavra: meio tempo de silêncio, depois o ko |
 
 ### Sequência
 
@@ -267,13 +267,13 @@ A ficha não traz números de tempo. A grade sai do texto por estas regras:
 5. **O ajuste fino manda quando existe.** `DON:2`, `_`, `(SORE!):2`.
 6. **Com suíngue, o meio do tempo atrasa para o último terço.** Uma palavra de duas sílabas toca longo e curto. O resto do tempo acompanha na mesma proporção.
 
-| Escrito | Tempos | Como soa |
-| --- | --- | --- |
-| `DON KON DON` | 3 | três semínimas |
-| `DON KONDON KONDON-KON` | 4 | semínima, duas colcheias, duas colcheias, semínima |
-| `DONKON (X8)` | 8 | dezesseis colcheias |
-| `DONdo-KONko-DON` | 3 | quatro colcheias e uma semínima |
-| `DON:2- KA:2- KA KA KA KA` | 8 | duas mínimas e quatro semínimas |
+| Escrito                    | Tempos | Como soa                                           |
+| -------------------------- | ------ | -------------------------------------------------- |
+| `DON KON DON`              | 3      | três semínimas                                     |
+| `DON KONDON KONDON-KON`    | 4      | semínima, duas colcheias, duas colcheias, semínima |
+| `DONKON (X8)`              | 8      | dezesseis colcheias                                |
+| `DONdo-KONko-DON`          | 3      | quatro colcheias e uma semínima                    |
+| `DON:2- KA:2- KA KA KA KA` | 8      | duas mínimas e quatro semínimas                    |
 
 A regra foi testada contra a própria ICHIGO. O VERSO B estreita a pergunta e resposta de 8 em 8, depois 4, depois 2, depois 1: com "palavra = um tempo", cada troca dura exatamente 8, 4, 2 e 1 tempos. Essa conta não depende de nenhuma suposição. Já os totais das seções (64, 48 e 68 tempos, compassos inteiros de 4/4) dependem das pausas e durações que assumi na seção 8.
 
@@ -300,14 +300,14 @@ Song
 
 O que o enunciado pedia em cada célula está aqui, em parte guardado e em parte derivado:
 
-| Pedido | Onde está |
-| --- | --- |
-| sílaba | `unit.text`, sempre em minúsculas |
-| batida forte ou fraca | `unit.weak` |
-| acento | `token.accent` (0, 1 ou 2), vale para a palavra inteira |
-| pausa | `unit.kind === "rest"` ou sílaba `su` |
-| kakegoe | `token.kind === "voice"` |
-| mão e borda | derivadas da sílaba por `syllableInfo` |
+| Pedido                | Onde está                                               |
+| --------------------- | ------------------------------------------------------- |
+| sílaba                | `unit.text`, sempre em minúsculas                       |
+| batida forte ou fraca | `unit.weak`                                             |
+| acento                | `token.accent` (0, 1 ou 2), vale para a palavra inteira |
+| pausa                 | `unit.kind === "rest"` ou sílaba `su`                   |
+| kakegoe               | `token.kind === "voice"`                                |
+| mão e borda           | derivadas da sílaba por `syllableInfo`                  |
 
 `timeLine(linha)` devolve a grade: cada célula com início e duração em tempos, mão (`right`, `left`), zona (`center`, `rim`), força, acento e tipo (`hit`, `rest`, `voice`). `buildTimeline(song)` desenrola a sequência inteira em segundos, com repetições, camadas, andamentos e suíngue já aplicados.
 
@@ -333,7 +333,7 @@ A legenda é montada a partir da música: só entram as sílabas e as convençõ
 
 ### Na tela e na impressão
 
-`TaikoSheet` desenha um `<svg>` por página A4. É um componente puro, sem estado e sem hooks, o que permite desenhá-lo no servidor. Isso foi testado com `renderToStaticMarkup`; como Server Component do Next não foi testado, porque o Next ainda não está neste repositório. Recebe `activeKeys` para pintar o cursor do player.
+`TaikoSheet` desenha um `<svg>` por página A4. É um componente puro, sem estado e sem hooks, o que permite desenhá-lo no servidor. Isso foi testado com `renderToStaticMarkup`; como Server Component do Next não foi testado, porque nenhuma página do site monta o componente ainda. Recebe `activeKeys` para pintar o cursor do player.
 
 Ao imprimir pelo navegador, o componente declara o tamanho do papel da ficha e margem zero, e cada SVG ocupa exatamente uma folha. Conferi no Chromium: a ICHIGO imprime em 2 páginas A4, iguais às do PDF. A regra de página vale para o documento inteiro enquanto houver uma ficha na tela, então o que estiver em volta deve levar `print:hidden` (os controles do player já levam).
 
@@ -350,12 +350,12 @@ Escolhi o **jsPDF** (licença MIT) por estes motivos:
 
 O que descartei:
 
-| Biblioteca | Motivo |
-| --- | --- |
-| pdf-lib | API boa, mas a última versão (1.17.1) é de novembro de 2021 |
-| PDFKit | feita para Node; no navegador exige polyfills de `stream` e `Buffer` ou o build avulso, que brigam com o empacotador |
-| @react-pdf/renderer | traz motor de layout próprio e obriga a reescrever a ficha nos componentes dele: seriam duas fichas para manter |
-| imprimir pelo navegador | não roda no servidor |
+| Biblioteca              | Motivo                                                                                                               |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| pdf-lib                 | API boa, mas a última versão (1.17.1) é de novembro de 2021                                                          |
+| PDFKit                  | feita para Node; no navegador exige polyfills de `stream` e `Buffer` ou o build avulso, que brigam com o empacotador |
+| @react-pdf/renderer     | traz motor de layout próprio e obriga a reescrever a ficha nos componentes dele: seriam duas fichas para manter      |
+| imprimir pelo navegador | não roda no servidor                                                                                                 |
 
 Não testei as alternativas neste projeto. As datas vêm do registro do npm; os outros motivos vêm do que conheço do desenho de cada uma.
 
@@ -382,13 +382,13 @@ O jsPDF não entra no pacote de quem só mostra a ficha: `pdf.ts` não é reexpo
 
 Cada instrumento é um conjunto de parâmetros. Medi os sons renderizados no Chrome:
 
-| Instrumento | Centro | Borda |
-| --- | --- | --- |
-| nagado | 110 a 130 Hz, soa por uns 320 ms | estalo perto de 1,3 kHz, 35 ms |
-| odaiko | 80 a 100 Hz, uns 600 ms | perto de 900 Hz |
-| okedo | cerca de 190 Hz | perto de 1,6 kHz |
-| shime | cerca de 480 Hz, 80 ms | perto de 2,9 kHz |
-| atarigane | sino perto de 3,4 kHz, 220 ms | o mesmo sino, abafado em 50 ms |
+| Instrumento | Centro                           | Borda                          |
+| ----------- | -------------------------------- | ------------------------------ |
+| nagado      | 110 a 130 Hz, soa por uns 320 ms | estalo perto de 1,3 kHz, 35 ms |
+| odaiko      | 80 a 100 Hz, uns 600 ms          | perto de 900 Hz                |
+| okedo       | cerca de 190 Hz                  | perto de 1,6 kHz               |
+| shime       | cerca de 480 Hz, 80 ms           | perto de 2,9 kHz               |
+| atarigane   | sino perto de 3,4 kHz, 220 ms    | o mesmo sino, abafado em 50 ms |
 
 A frequência é a dominante nos primeiros 100 ms; a duração é o tempo acima de 1% do volume máximo, na batida mais forte.
 
@@ -408,14 +408,14 @@ Transcrita da ficha do grupo (digitação de Andrey Viana). Seções, frases, re
 
 O que a ficha não diz e está marcado como `# incerto` em `musicas/ichigo.ts`:
 
-| Ponto | O que assumi |
-| --- | --- |
-| andamento e compasso | 120 bpm, 4/4 |
+| Ponto                                | O que assumi                                     |
+| ------------------------------------ | ------------------------------------------------ |
+| andamento e compasso                 | 120 bpm, 4/4                                     |
 | `DON-KON-DONKON` e `DONdo-KONko-DON` | um tempo de pausa depois, para fechar o compasso |
-| `(SORE!)` no fim do VERSO A | dois tempos |
-| `(SA-SA-SORE!)` | quatro tempos, como o `(SA-SA-SA-SA!)` |
-| `DON- KA-` | duas notas longas, de dois tempos cada |
-| azul e laranja | dois grupos ou lados que se alternam |
+| `(SORE!)` no fim do VERSO A          | dois tempos                                      |
+| `(SA-SA-SORE!)`                      | quatro tempos, como o `(SA-SA-SA-SA!)`           |
+| `DON- KA-`                           | duas notas longas, de dois tempos cada           |
+| azul e laranja                       | dois grupos ou lados que se alternam             |
 
 Nenhuma dessas marcas é impressa. Corrigir é mexer no texto.
 
@@ -451,14 +451,14 @@ Girando o ciclo para começar no "tsuku", a frase fica regular: 7 + 7 + 4 + 4 te
 
 **O que é incerto**, marcado como `# incerto` em `musicas/miyake.ts`:
 
-| Ponto | O que assumi | Por quê |
-| --- | --- | --- |
-| encaixe da marcação com a frase | o DON no tempo, o "do" antes dele | as gravações são separadas, não dá para medir; é a leitura "ko-DON" da Shangö e do Tatsumaki [4][6] |
-| o "tsuku" | falado, não tocado | na ficha da Shangö vem entre parênteses e a gravação não tem batida ali; o kuchi shōga japonês escreve o "tsuku" sem parênteses, então na ilha ele pode ser tocado de leve |
-| força do "do", do "ko" e do "tsu-te-te-ko" | fracos | convenção do kuchi shōga; na gravação a diferença é pequena |
-| contratempos | suíngue de tercina | medidos entre 0,43 e 0,67 do tempo, entre o reto e o tercinado |
-| andamento | 66 bpm, depois 80 e 96 | 66 é o da gravação; o arranjo da Shangö sugere lento, médio e rápido [6] |
-| sequência | marcação sozinha, depois a música base em blocos cada vez mais rápidos | forma de palco descrita em [6]; a do Kodon pode ser outra |
+| Ponto                                      | O que assumi                                                           | Por quê                                                                                                                                                                    |
+| ------------------------------------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| encaixe da marcação com a frase            | o DON no tempo, o "do" antes dele                                      | as gravações são separadas, não dá para medir; é a leitura "ko-DON" da Shangö e do Tatsumaki [4][6]                                                                        |
+| o "tsuku"                                  | falado, não tocado                                                     | na ficha da Shangö vem entre parênteses e a gravação não tem batida ali; o kuchi shōga japonês escreve o "tsuku" sem parênteses, então na ilha ele pode ser tocado de leve |
+| força do "do", do "ko" e do "tsu-te-te-ko" | fracos                                                                 | convenção do kuchi shōga; na gravação a diferença é pequena                                                                                                                |
+| contratempos                               | suíngue de tercina                                                     | medidos entre 0,43 e 0,67 do tempo, entre o reto e o tercinado                                                                                                             |
+| andamento                                  | 66 bpm, depois 80 e 96                                                 | 66 é o da gravação; o arranjo da Shangö sugere lento, médio e rápido [6]                                                                                                   |
+| sequência                                  | marcação sozinha, depois a música base em blocos cada vez mais rápidos | forma de palco descrita em [6]; a do Kodon pode ser outra                                                                                                                  |
 
 **O que ficou de fora:** os solos, o kiyari cantado, o final e as trocas de tocador. As trocas são movimento de palco, não ritmo; a ficha só registra que o teste as pede.
 
@@ -577,18 +577,18 @@ await player.play();
 
 `npm test` roda o Vitest (mais de 190 testes):
 
-| Arquivo | O que prova |
-| --- | --- |
-| `syllables.test.ts` | separação de sílabas e vocabulário |
-| `parser.test.ts` | cabeçalho, seções, texto corrido, sequência e as mensagens de erro com linha |
-| `roundtrip.test.ts` | ICHIGO e Miyake vão e voltam idênticas; a ICHIGO confere com a ficha impressa |
-| `model.test.ts` | validação zod, inclusive do que quebraria a ida e volta |
-| `timing.test.ts` | a regra de duração e o tamanho de cada seção |
-| `timeline.test.ts` | segundos, repetições, camadas, suíngue, crescendo, metrônomo |
-| `layout.test.ts` | a ficha (tabelas, cores, sublinhados, paginação) e a grade |
-| `pdf.test.ts` | o PDF relido com pdf.js: páginas, textos, acentos, opções |
-| `player.test.ts` | agendamento, andamento, loop, mudo, solo, pausa, com relógio de áudio falso |
-| `components.test.tsx` | os componentes renderizados no servidor |
+| Arquivo               | O que prova                                                                   |
+| --------------------- | ----------------------------------------------------------------------------- |
+| `syllables.test.ts`   | separação de sílabas e vocabulário                                            |
+| `parser.test.ts`      | cabeçalho, seções, texto corrido, sequência e as mensagens de erro com linha  |
+| `roundtrip.test.ts`   | ICHIGO e Miyake vão e voltam idênticas; a ICHIGO confere com a ficha impressa |
+| `model.test.ts`       | validação zod, inclusive do que quebraria a ida e volta                       |
+| `timing.test.ts`      | a regra de duração e o tamanho de cada seção                                  |
+| `timeline.test.ts`    | segundos, repetições, camadas, suíngue, crescendo, metrônomo                  |
+| `layout.test.ts`      | a ficha (tabelas, cores, sublinhados, paginação) e a grade                    |
+| `pdf.test.ts`         | o PDF relido com pdf.js: páginas, textos, acentos, opções                     |
+| `player.test.ts`      | agendamento, andamento, loop, mudo, solo, pausa, com relógio de áudio falso   |
+| `components.test.tsx` | os componentes renderizados no servidor                                       |
 
 O que os testes não alcançam foi conferido num Chrome de verdade, com uma página temporária que não ficou no repositório:
 
